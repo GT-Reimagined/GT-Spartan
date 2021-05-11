@@ -8,7 +8,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class GT4RConfig {
+public class GTSPConfig {
 
     public static final Data DATA = new Data();
     public static final Gameplay GAMEPLAY = new Gameplay();
