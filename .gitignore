@@ -1,0 +1,37 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+
+# generated
+src/generated/*
+
+# Files from Forge MDK
+forge*changelog.txt
+*.db
+
+src/main/resources/assets/gt4r/textures/ic2-texture-reference.zip
+
+src/main/resources/assets/gt4r/textures/ic2.zip
+
+src/main/resources/assets/gt4r/textures/minecraft.zip
+
+src/main/resources/assets/gt4r/textures/old_textures/
