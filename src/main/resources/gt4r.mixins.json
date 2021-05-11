@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "trinsdar.gt4r.mixin",
+  "package": "trinsdar.gtsp.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "gt4r.refmap.json",
+  "refmap": "gtsp.refmap.json",
   "client": [
     "GameRendererMixin"
   ],
