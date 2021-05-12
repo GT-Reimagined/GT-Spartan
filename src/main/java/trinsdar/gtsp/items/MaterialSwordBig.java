@@ -40,7 +40,7 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, 
     GTSPToolType type;
     String domain;
     public MaterialSwordBig(String domain, GTSPToolType type, Properties prop) {
-        super(type.getId(), prop, new WeaponMaterial(type.getId(), domain, AntimatterItemTier.NULL, null), type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
+        super(type.getId(), prop, GTSPWeaponMaterial.NULL, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
         this.type = type;
         this.domain = domain;
         AntimatterAPI.register(IAntimatterTool.class, getId(), this);
@@ -80,5 +80,61 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, 
     @Override
     public String getParent() {
         return SpartanWeaponryAPI.MOD_ID + ":item/" + getId() + "_wood";
+    }
+
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
+        Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
+        if (equipmentSlot == EquipmentSlotType.MAINHAND) {
+            modifiers.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", type.getBaseAttackDamage() + getTier(stack).getAttackDamage(), AttributeModifier.Operation.ADDITION));
+            modifiers.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", type.getBaseAttackSpeed(), AttributeModifier.Operation.ADDITION));
+            IMeleeTraitCallback callback;
+            if (this.traits != null) {
+                for (WeaponTrait property : this.traits){
+                    callback = property.getMeleeCallback();
+                    if (callback != null) {
+                        callback.onModifyAttibutesMelee(modifiers);
+                    }
+                }
+            }
+
+            if (this.getMaterial(stack).hasAnyWeaponTrait()) {
+                for (WeaponTrait property : this.getMaterial(stack).getAllWeaponTraits()){
+                    callback = property.getMeleeCallback();
+                    if (callback != null) {
+                        callback.onModifyAttibutesMelee(modifiers);
+                    }
+                }
+            }
+        }
+
+        return modifiers;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        boolean isShiftPressed = Screen.hasShiftDown();
+        if (this.getMaterial(stack).hasAnyWeaponTrait()) {
+            tooltip.add((new TranslationTextComponent(String.format("tooltip.%s.traits.material_bonus", "spartanweaponry"))).mergeStyle(TextFormatting.DARK_AQUA));
+            for (WeaponTrait trait : this.getMaterial(stack).getAllWeaponTraits()){
+                trait.addTooltip(stack, tooltip, isShiftPressed);
+            }
+        }
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
+    @Override
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        IMeleeTraitCallback callback;
+        for (WeaponTrait trait : this.getMaterial(stack).getAllWeaponTraits()){
+            callback = trait.getMeleeCallback();
+            if (callback != null) {
+                callback.onHitEntity(this.material, stack, target, attacker, (Entity)null);
+            }
+        }
+        return super.hitEntity(stack, target, attacker);
+    }
+
+    public WeaponMaterial getMaterial(ItemStack stack) {
+        return GTSPWeaponMaterial.getOrCreate(this.getPrimaryMaterial(stack), this.getSecondaryMaterial(stack));
     }
 }
