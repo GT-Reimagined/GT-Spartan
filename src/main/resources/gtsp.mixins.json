@@ -3,14 +3,8 @@
   "package": "trinsdar.gtsp.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "gtsp.refmap.json",
-  "client": [
-    "GameRendererMixin"
-  ],
-  "server": [
-    "ServerPlayNetHandlerMixin"
-  ],
   "mixins": [
-    "PlayerEntityMixin"
+    "ThrowingWeaponEntityMixin"
   ],
   "minVersion": "0.8"
 }

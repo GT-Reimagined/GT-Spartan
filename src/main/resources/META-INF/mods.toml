@@ -8,18 +8,25 @@ issueTrackerURL="https://github.com/Trinsdar/GT-4-Reimagined/issues"
 modId="gtsp"
 #version="${version}"
 version="0.0.1"
-displayName="GT 4 Reimagined"
+displayName="GT Spartan"
 #updateJSONURL="http://myurl.me/"
-displayURL="https://github.com/Trinsdar/GT-4-Reimagined"
+displayURL="https://github.com/Trinsdar/GT-Spartan"
 #logoFile="gregtech.png"
 credits="GregoriusTechneticies for his previous versions of GregTech. And the current GregTech community and Bear989 for suggestions and ideas."
 authors="Trinsdar"
-description='''My remake of GregTech 4'''
+description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan weapons''
 [[dependencies.gtsp]]
     modId="antimatter"
     mandatory=true
     #versionRange="[${antimatter_version},)"
     versionRange="0.0.1"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.gtsp]]
+    modId="spartanweaponry"
+    mandatory=true
+    versionRange="[${spartan_version},)"
+    #versionRange="0.0.1"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.gtsp]]

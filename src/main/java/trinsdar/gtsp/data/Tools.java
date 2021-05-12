@@ -5,8 +5,11 @@ import muramasa.antimatter.material.MaterialItem;
 import muramasa.antimatter.material.MaterialType;
 import muramasa.antimatter.material.MaterialTypeItem;
 import muramasa.antimatter.tool.AntimatterToolType;
+import muramasa.antimatter.util.TagUtils;
+import muramasa.antimatter.util.Utils;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.tags.ITag;
 import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.items.MaterialItemToolPart;
 import trinsdar.gtsp.items.MaterialSwordBig;
@@ -22,7 +25,7 @@ public class Tools {
         }
     });
 
-    public static MaterialTypeItem<?> HANDLE = new MaterialTypeItem<>("handle", 1, true, muramasa.antimatter.Ref.U * 2, new MaterialTypeItem.ItemSupplier() {
+    public static MaterialTypeItem<?> HANDLE = new MaterialTypeItem<>("handle_sp", 1, true, muramasa.antimatter.Ref.U * 2, new MaterialTypeItem.ItemSupplier() {
         @Override
         public MaterialItem supply(String domain, MaterialType<?> type, Material material) {
             return new MaterialItemToolPart(domain, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS));

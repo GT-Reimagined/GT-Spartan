@@ -1,20 +1,42 @@
 package trinsdar.gtsp.items;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
+import com.oblivioussp.spartanweaponry.api.trait.IMeleeTraitCallback;
+import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import trinsdar.gtsp.tool.GTSPToolType;
+import trinsdar.gtsp.tool.GTSPWeaponMaterial;
 
 import javax.annotation.Nonnull;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
-public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool {
+public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, IMaterialItemSpartan {
     GTSPToolType type;
     String domain;
     public MaterialSwordBig(String domain, GTSPToolType type, Properties prop) {
@@ -39,9 +61,24 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool {
         return type.getId();
     }
 
+    @Override
+    public String getDomain() {
+        return domain;
+    }
+
     @Nonnull
     @Override
     public Set<ToolType> getToolTypes(ItemStack stack) {
         return getToolTypes();
+    }
+
+    @Override
+    public void onItemModelBuild(IItemProvider item, AntimatterItemModelProvider prov) {
+        prov.tex(item, getParent(), getTextures());
+    }
+
+    @Override
+    public String getParent() {
+        return SpartanWeaponryAPI.MOD_ID + ":item/" + getId() + "_wood";
     }
 }

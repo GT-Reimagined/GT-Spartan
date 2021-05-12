@@ -21,6 +21,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
+import trinsdar.gtsp.datagen.GTSPItemModelProvider;
 import trinsdar.gtsp.datagen.GTSPItemTagProvider;
 import trinsdar.gtsp.datagen.GTSPLocalizations;
 import trinsdar.gtsp.datagen.GTSPRecipes;
@@ -49,7 +50,11 @@ public class GTSpartan extends AntimatterMod {
         //if (ModList.get().isLoaded(Ref.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
 
-        AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
+        AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
+        AntimatterDynamics.addProvider(Ref.ID, g -> {
+            p[0] = new AntimatterBlockTagProvider(Ref.ID, Ref.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
+            return p[0];
+        });
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemTagProvider(Ref.ID, Ref.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPRecipes(Ref.ID, Ref.NAME.concat(" Recipes"), g));
         AntimatterDynamics.addProvider(Ref.ID, GTSPLocalizations.en_US::new);
