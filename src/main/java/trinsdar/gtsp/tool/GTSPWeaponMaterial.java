@@ -1,6 +1,7 @@
 package trinsdar.gtsp.tool;
 
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
+import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import muramasa.antimatter.Data;
@@ -13,6 +14,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -33,6 +35,13 @@ public class GTSPWeaponMaterial extends WeaponMaterial {
         super(primary.getId(), primary.getDomain(), primary.getRGB(), secondary.getRGB(), primary.getToolQuality(), primary.getToolDurability() + secondary.getHandleDurability(), primary.getToolSpeed() + secondary.getHandleSpeed(), primary.getToolDamage(), (int) (primary.getToolQuality() + primary.getToolSpeed() + secondary.getToolSpeed()), null);
         this.primary = primary;
         this.secondary = secondary;
+        if (primary.getId().contains("silver")) {
+            this.traits = Collections.singletonList(WeaponTraits.EXTRA_DAMAGE_50P_UNDEAD);
+        } else if (primary.getId().equals("lead")){
+            this.traits = Collections.singletonList(WeaponTraits.HEAVY);
+        } else if (primary.getId().equals("netherite") || primary.getId().equals("netherized_diamond")){
+            this.traits = Collections.singletonList(WeaponTraits.FIREPROOF);
+        }
     }
 
     @Override
