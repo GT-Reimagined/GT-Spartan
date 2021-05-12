@@ -2,7 +2,7 @@ modLoader="javafml"
 #loaderVersion="[${loader_version},)"
 license="LGPLv3"
 loaderVersion="[31,)"
-issueTrackerURL="https://github.com/Trinsdar/GT-4-Reimagined/issues"
+issueTrackerURL="https://github.com/Trinsdar/GT-Spartan/issues"
 
 [[mods]]
 modId="gtsp"
@@ -14,7 +14,7 @@ displayURL="https://github.com/Trinsdar/GT-Spartan"
 #logoFile="gregtech.png"
 credits="GregoriusTechneticies for his previous versions of GregTech. And the current GregTech community and Bear989 for suggestions and ideas."
 authors="Trinsdar"
-description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan weapons''
+description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan weapons'''
 [[dependencies.gtsp]]
     modId="antimatter"
     mandatory=true
@@ -25,8 +25,8 @@ description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan w
 [[dependencies.gtsp]]
     modId="spartanweaponry"
     mandatory=true
-    versionRange="[${spartan_version},)"
-    #versionRange="0.0.1"
+    #versionRange="[${spartan_version},)"
+    versionRange="2.1.0"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.gtsp]]

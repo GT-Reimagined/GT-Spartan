@@ -144,14 +144,14 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:top-245211:${top_file}")
 
 
-    implementation fg.deobf("curse.maven:antimatter-462713:${antimatter_file}")
-    implementation fg.deobf("curse.maven:tesseract-462718:${tesseract_file}")
+    //implementation fg.deobf("curse.maven:antimatter-462713:${antimatter_file}")
+    //implementation fg.deobf("curse.maven:tesseract-462718:${tesseract_file}")
 
-    /*runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:AntimatterAPI:${antimatter_version}")
-    compileOnly ("com.github.GregTech-Intergalactical:AntimatterAPI:${antimatter_version}")
+    runtimeOnly fg.deobf("com.github.Trinsdar:AntimatterAPI:${antimatter_version}")
+    compileOnly ("com.github.Trinsdar:AntimatterAPI:${antimatter_version}")
 
     runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
-    compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")*/
+    compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
