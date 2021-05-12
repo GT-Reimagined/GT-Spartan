@@ -140,16 +140,18 @@ dependencies {
 
     runtimeOnly fg.deobf("curse.maven:world_stripper-250603:3142092")
     runtimeOnly fg.deobf("curse.maven:world_edit-225608:3172951")
-    runtimeOnly fg.deobf("curse.maven:spartan_weaponry-278141:3291850")
-    compileOnly fg.deobf("curse.maven:spartan_weaponry-278141:3291850")
+    implementation fg.deobf("curse.maven:spartan_weaponry-278141:${spartan_weaponry_file}")
     runtimeOnly fg.deobf("curse.maven:top-245211:${top_file}")
 
 
-    runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:AntimatterAPI:${antimatter_version}")
+    implementation fg.deobf("curse.maven:antimatter-462713:${antimatter_file}")
+    implementation fg.deobf("curse.maven:tesseract-462718:${tesseract_file}")
+
+    /*runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:AntimatterAPI:${antimatter_version}")
     compileOnly ("com.github.GregTech-Intergalactical:AntimatterAPI:${antimatter_version}")
 
     runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
-    compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
+    compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")*/
 
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 

@@ -1,7 +1,6 @@
 package trinsdar.gtsp.data;
 
 import muramasa.antimatter.util.TagUtils;
-import muramasa.antimatter.util.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 
