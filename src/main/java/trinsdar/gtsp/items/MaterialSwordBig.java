@@ -110,7 +110,7 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, 
         return modifiers;
     }
 
-    @Override
+    /*@Override
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         boolean isShiftPressed = Screen.hasShiftDown();
         if (this.getMaterial(stack).hasAnyWeaponTrait()) {
@@ -120,9 +120,9 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, 
             }
         }
         super.addInformation(stack, worldIn, tooltip, flagIn);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         IMeleeTraitCallback callback;
         for (WeaponTrait trait : this.getMaterial(stack).getAllWeaponTraits()){
@@ -132,9 +132,14 @@ public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, 
             }
         }
         return super.hitEntity(stack, target, attacker);
-    }
+    }*/
 
     public WeaponMaterial getMaterial(ItemStack stack) {
         return GTSPWeaponMaterial.getOrCreate(this.getPrimaryMaterial(stack), this.getSecondaryMaterial(stack));
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return getMaterial(stack).getMaxUses();
     }
 }

@@ -54,6 +54,27 @@ public class Tools {
     public static AntimatterToolType SABER = new GTSPToolType(Ref.ID, "saber", 2, 1, 10, 1.5F, -2.4F, WeaponTraits.DAMAGE_ABSORB_25, WeaponTraits.EXTRA_DAMAGE_2_CHEST, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordBig.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static Material Wood = new Material(Ref.ID, "wood", 0x643200, TextureSet.NONE).asDust(PLATE).addHandleStat(12, 0.0F);
 
+    //TODO:
+    /**  Dagger
+     *   Rapier
+     *   Battle Hammer
+     *   Warhammer
+     *   Spear
+     *   Halberd
+     *   Pike
+     *   Lance
+     *   Longbow
+     *   Heavy Crossbow
+     *   Throwing Knife
+     *   Tomahawk
+     *   Javelin
+     *   Boomerang
+     *   Battleaxe
+     *   Flanged Mace
+     *   Glaive
+     *   Quarterstaff
+     * */
+
     public static void init(){
         Material wood = Material.get("wood");
         if (wood != Data.NULL){
