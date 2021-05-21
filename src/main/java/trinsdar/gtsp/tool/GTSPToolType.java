@@ -15,7 +15,9 @@ public class GTSPToolType  extends AntimatterToolType {
     public GTSPToolType(String domain, String id, int useDurability, int attackDurability, int craftingDurability, float baseAttackDamage, float baseAttackSpeed, WeaponTrait... weaponTraits) {
         super(domain, id, useDurability, attackDurability, craftingDurability, baseAttackDamage, baseAttackSpeed);
         this.weaponTraits = weaponTraits;
-        this.setOverlayLayers(2);
+        if (!id.equals("boomerang")) {
+            this.setOverlayLayers(2);
+        }
     }
 
     public WeaponTrait[] getWeaponTraits() {
