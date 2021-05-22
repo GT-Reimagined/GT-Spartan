@@ -1,5 +1,8 @@
 package trinsdar.gtsp;
 
+import com.oblivioussp.spartanweaponry.item.HeavyCrossbowItem;
+import com.oblivioussp.spartanweaponry.item.LongbowItem;
+import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterDynamics;
 import muramasa.antimatter.AntimatterMod;
@@ -9,7 +12,13 @@ import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.RegistrationEvent;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -45,6 +54,7 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GTSPConfig.COMMON_SPEC);
+        MinecraftForge.EVENT_BUS.register(this);
         //GregTechAPI.addRegistrar(new ForestryRegistrar());
         //GregTechAPI.addRegistrar(new GalacticraftRegistrar());
         //if (ModList.get().isLoaded(Ref.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
@@ -60,6 +70,20 @@ public class GTSpartan extends AntimatterMod {
         AntimatterDynamics.addProvider(Ref.ID, GTSPLocalizations.en_US::new);
 
         registerRecipeLoaders();
+    }
+
+    //@SubscribeEvent
+    public void onPlayerTick(TickEvent.PlayerTickEvent event){
+        if (event.phase == TickEvent.Phase.END){
+            PlayerEntity player = event.player;
+            ItemStack stack = player.getHeldItemMainhand();
+            if (stack.getItem() instanceof LongbowItem || stack.getItem() instanceof HeavyCrossbowItem){
+                if (stack.hasTag()){
+                    //noinspection ConstantConditions
+                    Antimatter.LOGGER.info(stack.getTag().toString());
+                }
+            }
+        }
     }
 
     private void registerRecipeLoaders() {
