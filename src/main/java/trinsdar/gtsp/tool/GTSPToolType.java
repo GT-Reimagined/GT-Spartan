@@ -5,7 +5,7 @@ import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.item.Item;
-import trinsdar.gtsp.items.MaterialSwordBig;
+import trinsdar.gtsp.items.MaterialSwordSp;
 
 import java.util.function.Supplier;
 
@@ -26,13 +26,13 @@ public class GTSPToolType  extends AntimatterToolType {
 
     @Override
     public IAntimatterTool instantiateTools(String domain) {
-        if (this.getToolClass() == MaterialSwordBig.class) return new MaterialSwordBig(domain, this, prepareInstantiation(domain));
+        if (this.getToolClass() == MaterialSwordSp.class) return new MaterialSwordSp(domain, this, prepareInstantiation(domain));
         return super.instantiateTools(domain);
     }
 
     @Override
     public IAntimatterTool instantiateTools(String domain, Supplier<Item.Properties> properties) {
-        if (this.getToolClass() == MaterialSwordBig.class) return new MaterialSwordBig(domain, this, properties.get());
+        if (this.getToolClass() == MaterialSwordSp.class) return new MaterialSwordSp(domain, this, properties.get());
         return super.instantiateTools(domain, properties);
     }
 

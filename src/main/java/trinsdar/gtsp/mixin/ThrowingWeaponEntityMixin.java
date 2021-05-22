@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import trinsdar.gtsp.items.MaterialSwordBig;
+import trinsdar.gtsp.items.MaterialSwordSp;
 
 @Mixin(ThrowingWeaponEntity.class)
 public abstract class ThrowingWeaponEntityMixin extends AbstractArrowEntity {
@@ -24,8 +24,8 @@ public abstract class ThrowingWeaponEntityMixin extends AbstractArrowEntity {
 
     @Redirect(method = "onEntityHit", at = @At(value = "INVOKE", target = "Lcom/oblivioussp/spartanweaponry/api/IWeaponTraitContainer;getMaterial()Lcom/oblivioussp/spartanweaponry/api/WeaponMaterial;"))
     public WeaponMaterial getMaterial(IWeaponTraitContainer<Item> container){
-        if (weapon.getItem() instanceof MaterialSwordBig){
-           return  ((MaterialSwordBig) weapon.getItem()).getMaterial(weapon);
+        if (weapon.getItem() instanceof MaterialSwordSp){
+           return  ((MaterialSwordSp) weapon.getItem()).getMaterial(weapon);
         }
         return container.getMaterial();
     }

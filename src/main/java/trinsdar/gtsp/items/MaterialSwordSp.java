@@ -36,10 +36,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class MaterialSwordBig extends SwordBaseItem implements IAntimatterTool, IMaterialItemSpartan {
+public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, IMaterialItemSpartan {
     GTSPToolType type;
     String domain;
-    public MaterialSwordBig(String domain, GTSPToolType type, Properties prop) {
+    public MaterialSwordSp(String domain, GTSPToolType type, Properties prop) {
         super(type.getId(), prop, GTSPWeaponMaterial.NULL, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
         this.type = type;
         this.domain = domain;

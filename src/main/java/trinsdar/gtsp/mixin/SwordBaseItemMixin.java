@@ -1,6 +1,5 @@
 package trinsdar.gtsp.mixin;
 
-import com.oblivioussp.spartanweaponry.api.IWeaponTraitContainer;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import net.minecraft.block.BlockState;
@@ -8,7 +7,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.util.text.ITextComponent;
@@ -18,7 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import trinsdar.gtsp.items.MaterialSwordBig;
+import trinsdar.gtsp.items.MaterialSwordSp;
 
 import java.util.List;
 
@@ -33,32 +31,32 @@ public abstract class SwordBaseItemMixin extends SwordItem {
 
     @Redirect(method = "inventoryTick", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;material:I", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(SwordBaseItem item, ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected){
-        if (stack.getItem() instanceof MaterialSwordBig){
-            return  ((MaterialSwordBig) stack.getItem()).getMaterial(stack);
+        if (stack.getItem() instanceof MaterialSwordSp){
+            return  ((MaterialSwordSp) stack.getItem()).getMaterial(stack);
         }
         return material;
     }
 
     @Redirect(method = "getDestroySpeed", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;material:I", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(SwordBaseItem item, ItemStack stack, BlockState state){
-        if (stack.getItem() instanceof MaterialSwordBig){
-            return  ((MaterialSwordBig) stack.getItem()).getMaterial(stack);
+        if (stack.getItem() instanceof MaterialSwordSp){
+            return  ((MaterialSwordSp) stack.getItem()).getMaterial(stack);
         }
         return material;
     }
 
     @Redirect(method = "addInformation", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;material:I", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(SwordBaseItem item, ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn){
-        if (stack.getItem() instanceof MaterialSwordBig){
-            return  ((MaterialSwordBig) stack.getItem()).getMaterial(stack);
+        if (stack.getItem() instanceof MaterialSwordSp){
+            return  ((MaterialSwordSp) stack.getItem()).getMaterial(stack);
         }
         return material;
     }
 
     @Redirect(method = "hitEntity", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;material:I", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(SwordBaseItem item, ItemStack stack, LivingEntity target, LivingEntity attacker){
-        if (stack.getItem() instanceof MaterialSwordBig){
-            return  ((MaterialSwordBig) stack.getItem()).getMaterial(stack);
+        if (stack.getItem() instanceof MaterialSwordSp){
+            return  ((MaterialSwordSp) stack.getItem()).getMaterial(stack);
         }
         return material;
     }
