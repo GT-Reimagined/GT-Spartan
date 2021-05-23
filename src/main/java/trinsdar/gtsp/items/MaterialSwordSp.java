@@ -13,6 +13,7 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
+import muramasa.antimatter.tool.MaterialSword;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -28,6 +29,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import trinsdar.gtsp.data.Tools;
 import trinsdar.gtsp.tool.GTSPToolType;
 import trinsdar.gtsp.tool.GTSPWeaponMaterial;
 
@@ -47,13 +49,13 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
     }
 
     @Override
-    public AntimatterToolType getType() {
+    public AntimatterToolType getAntimatterToolType() {
         return type;
     }
 
     @Override
     public ItemStack asItemStack(Material primary, Material secondary) {
-        return type.getToolStack(primary, secondary);
+        return resolveStack(primary, secondary, 0, 0);
     }
 
     @Override
@@ -79,7 +81,9 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
 
     @Override
     public String getParent() {
-        return SpartanWeaponryAPI.MOD_ID + ":item/" + getId() + "_wood";
+        String id = getId();
+        if (type == Tools.BATTLE_HAMMER) id = "hammer";
+        return SpartanWeaponryAPI.MOD_ID + ":item/" + id + "_wood";
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {

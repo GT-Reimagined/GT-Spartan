@@ -25,8 +25,8 @@ import trinsdar.gtsp.tool.GTSPWeaponMaterial;
 import javax.annotation.Nonnull;
 import java.util.Set;
 
-public class MaterialThrowingWeapon /*extends ThrowingWeaponItem implements IAntimatterTool, IMaterialItemSpartan*/ {
-    /*GTSPToolType type;
+public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntimatterTool, IMaterialItemSpartan {
+    GTSPToolType type;
     String domain;
     public MaterialThrowingWeapon(String domain, GTSPToolType type, Properties prop) {
         super(type.getId(), prop, GTSPWeaponMaterial.NULL, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
@@ -36,7 +36,7 @@ public class MaterialThrowingWeapon /*extends ThrowingWeaponItem implements IAnt
     }
 
     @Override
-    public AntimatterToolType getType() {
+    public AntimatterToolType getAntimatterToolType() {
         return type;
     }
 
@@ -106,5 +106,5 @@ public class MaterialThrowingWeapon /*extends ThrowingWeaponItem implements IAnt
     @Override
     public int getMaxDamage(ItemStack stack) {
         return getMaterial(stack).getMaxUses();
-    }*/
+    }
 }

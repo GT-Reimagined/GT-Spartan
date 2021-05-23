@@ -29,7 +29,7 @@ public class ThrowingWeaponItemMixin extends Item {
         super(properties);
     }
 
-    /*@Redirect(method = "inventoryTick", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "inventoryTick", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:I", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(ThrowingWeaponItem item, ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected){
         if (stack.getItem() instanceof MaterialThrowingWeapon){
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
@@ -51,5 +51,5 @@ public class ThrowingWeaponItemMixin extends Item {
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
         }
         return material;
-    }*/
+    }
 }
