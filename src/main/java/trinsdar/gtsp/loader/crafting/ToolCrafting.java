@@ -1,7 +1,7 @@
 package trinsdar.gtsp.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import com.sun.jna.platform.win32.WinDef;
+import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
@@ -20,18 +20,19 @@ import java.util.function.Function;
 
 import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.Data.*;
-import static muramasa.antimatter.Data.AXE;
 import static muramasa.antimatter.Data.NULL;
-import static muramasa.antimatter.Data.SWORD;
 import static muramasa.antimatter.material.MaterialTag.HANDLE;
 import static trinsdar.gtsp.data.Tools.*;
 
 public class ToolCrafting {
     public static void loadRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
-        loadOtherRecipes(output, provider);
+        loadStandardToolRecipes(output, provider);
+        if (Material.get("flint") != NULL && Material.get("flint").has(GEM)){
+            loadFlintToolRecipes(output, provider);
+        }
     }
 
-    private static void loadOtherRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
+    private static void loadStandardToolRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
         ICriterionInstance in = provider.hasSafeItem(FILE.getTag());
 
         Function<AntimatterToolType, ImmutableMap<Character, Object>> map2 = type -> of('R', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
@@ -79,6 +80,57 @@ public class ToolCrafting {
                 "has_wrench", in, GLAIVE.getToolStack(NULL, NULL), map1.apply(GLAIVE), " P ", "FPH", " R ");
         provider.addToolRecipe(TOOL_BUILDER.get(QUARTERSTAFF.getId()), output, Ref.ID, QUARTERSTAFF.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, QUARTERSTAFF.getToolStack(NULL, NULL), map1.apply(QUARTERSTAFF), "FRH", " P ");
+    }
+
+    private static void loadFlintToolRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
+        Material flint = Material.get("flint");
+        ICriterionInstance in = provider.hasSafeItem(GEM.get(flint));
+
+        ImmutableMap<Character, Object> map2 = of('R', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+
+        ImmutableMap<Character, Object> map1 = of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+
+        String[] strings1 = new String[]{"PII", "FRH", " R "};
+        String[] strings3 = new String[]{" P ", "FPH", " R "};
+
+        String[] strings2 = new String[]{"FPH", " R ", " R "};
+        String[] strings2Gem = new String[]{"FGH", " R ", " R "};
+
+        provider.addToolRecipe(TOOL_BUILDER.get(DAGGER.getId()), output, Ref.ID, DAGGER.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, DAGGER.getToolStack(flint, NULL), map2, "P", "R");
+        provider.addToolRecipe(TOOL_BUILDER.get(LONGSWORD.getId()), output, Ref.ID, LONGSWORD.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, LONGSWORD.getToolStack(flint, NULL), map2, " P ", " P ", "PRP");
+        provider.addToolRecipe(TOOL_BUILDER.get(KATANA.getId()), output, Ref.ID, KATANA.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, KATANA.getToolStack(flint, NULL), map2, "  P", " P ", "R  ");
+        provider.addToolRecipe(TOOL_BUILDER.get(SABER.getId()), output, Ref.ID, SABER.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, SABER.getToolStack(flint, NULL), map2, " P", " P", "PR");
+        provider.addToolRecipe(TOOL_BUILDER.get(RAPIER.getId()), output, Ref.ID, RAPIER.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, RAPIER.getToolStack(flint, NULL), map2, "  P", "PP ", "RP ");
+        provider.addToolRecipe(TOOL_BUILDER.get(GREATSWORD.getId()), output, Ref.ID, GREATSWORD.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, GREATSWORD.getToolStack(flint, NULL), map2, " P ", "PPP", "PRP");
+        provider.addToolRecipe(TOOL_BUILDER.get(BATTLE_HAMMER.getId()), output, Ref.ID, BATTLE_HAMMER.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, BATTLE_HAMMER.getToolStack(flint, NULL), map2, "PPP", "PPP", " R ");
+        provider.addToolRecipe(TOOL_BUILDER.get(WARHAMMER.getId()), output, Ref.ID, WARHAMMER.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, WARHAMMER.getToolStack(flint, NULL), map2, " P", "PP", " R");
+        provider.addToolRecipe(TOOL_BUILDER.get(SPEAR.getId()), output, Ref.ID, SPEAR.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, SPEAR.getToolStack(flint, NULL), map1, "P", "R");
+        provider.addToolRecipe(TOOL_BUILDER.get(HALBERD.getId()), output, Ref.ID, HALBERD.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, HALBERD.getToolStack(flint, NULL), map1, " P", "PP", "PR");
+        provider.addToolRecipe(TOOL_BUILDER.get(PIKE.getId()), output, Ref.ID, PIKE.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, PIKE.getToolStack(flint, NULL), map1, "P", "R", "R");
+        provider.addToolRecipe(TOOL_BUILDER.get(LANCE.getId()), output, Ref.ID, LANCE.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, LANCE.getToolStack(flint, NULL), of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(GEM).mats(flint).build()), "  P", "PR ", "rP ");
+
+
+        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+        provider.addToolRecipe(TOOL_BUILDER.get(BATTLEAXE.getId()), output, Ref.ID, BATTLEAXE.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, BATTLEAXE.getToolStack(flint, NULL), map3, "PPP", "PrP", " R ");
+        provider.addToolRecipe(TOOL_BUILDER.get(FLANGED_MACE.getId()), output, Ref.ID, FLANGED_MACE.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, FLANGED_MACE.getToolStack(flint, NULL), map3, " PP", " rP", "R  ");
+        provider.addToolRecipe(TOOL_BUILDER.get(GLAIVE.getId()), output, Ref.ID, GLAIVE.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, GLAIVE.getToolStack(flint, NULL), map1, "P", "P", "R");
+        provider.addToolRecipe(TOOL_BUILDER.get(QUARTERSTAFF.getId()), output, Ref.ID, QUARTERSTAFF.getId() + "_flint" , "gtsp_weapons",
+                "has_wrench", in, QUARTERSTAFF.getToolStack(flint, NULL), map1, "R", "P");
     }
 
 
