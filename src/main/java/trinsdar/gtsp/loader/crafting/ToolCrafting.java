@@ -1,7 +1,6 @@
 package trinsdar.gtsp.loader.crafting;
 
 import com.google.common.collect.ImmutableMap;
-import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
@@ -12,7 +11,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import trinsdar.gtsp.Ref;
-import trinsdar.gtsp.data.Tools;
+import trinsdar.gtsp.data.Materials;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -35,9 +34,9 @@ public class ToolCrafting {
     private static void loadStandardToolRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
         ICriterionInstance in = provider.hasSafeItem(FILE.getTag());
 
-        Function<AntimatterToolType, ImmutableMap<Character, Object>> map2 = type -> of('R', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
+        Function<AntimatterToolType, ImmutableMap<Character, Object>> map2 = type -> of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
 
-        Function<AntimatterToolType, ImmutableMap<Character, Object>> map1 = type -> of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
+        Function<AntimatterToolType, ImmutableMap<Character, Object>> map1 = type -> of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
 
         String[] strings1 = new String[]{"PII", "FRH", " R "};
         String[] strings3 = new String[]{" P ", "FPH", " R "};
@@ -68,10 +67,10 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(PIKE.getId()), output, Ref.ID, PIKE.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, PIKE.getToolStack(NULL, NULL), map1.apply(PIKE), "FPH", " R ", " R ");
         provider.addToolRecipe(TOOL_BUILDER.get(LANCE.getId()), output, Ref.ID, LANCE.getId() + "_with" , "gtsp_weapons",
-                "has_wrench", in, LANCE.getToolStack(NULL, NULL), of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag()), " FP", "PRH", "rP ");
+                "has_wrench", in, LANCE.getToolStack(NULL, NULL), of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag()), " FP", "PRH", "rP ");
 
 
-        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag());
+        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag());
         provider.addToolRecipe(TOOL_BUILDER.get(BATTLEAXE.getId()), output, Ref.ID, BATTLEAXE.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, BATTLEAXE.getToolStack(NULL, NULL), map3, "PPP", "PrP", "FRH");
         provider.addToolRecipe(TOOL_BUILDER.get(FLANGED_MACE.getId()), output, Ref.ID, FLANGED_MACE.getId() + "_with" , "gtsp_weapons",
@@ -86,9 +85,9 @@ public class ToolCrafting {
         Material flint = Material.get("flint");
         ICriterionInstance in = provider.hasSafeItem(GEM.get(flint));
 
-        ImmutableMap<Character, Object> map2 = of('R', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+        ImmutableMap<Character, Object> map2 = of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
 
-        ImmutableMap<Character, Object> map1 = of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+        ImmutableMap<Character, Object> map1 = of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
 
         String[] strings1 = new String[]{"PII", "FRH", " R "};
         String[] strings3 = new String[]{" P ", "FPH", " R "};
@@ -119,10 +118,10 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(PIKE.getId()), output, Ref.ID, PIKE.getId() + "_flint" , "gtsp_weapons",
                 "has_wrench", in, PIKE.getToolStack(flint, NULL), map1, "P", "R", "R");
         provider.addToolRecipe(TOOL_BUILDER.get(LANCE.getId()), output, Ref.ID, LANCE.getId() + "_flint" , "gtsp_weapons",
-                "has_wrench", in, LANCE.getToolStack(flint, NULL), of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Tools.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(GEM).mats(flint).build()), "  P", "PR ", "rP ");
+                "has_wrench", in, LANCE.getToolStack(flint, NULL), of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(GEM).mats(flint).build()), "  P", "PR ", "rP ");
 
 
-        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Tools.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
         provider.addToolRecipe(TOOL_BUILDER.get(BATTLEAXE.getId()), output, Ref.ID, BATTLEAXE.getId() + "_flint" , "gtsp_weapons",
                 "has_wrench", in, BATTLEAXE.getToolStack(flint, NULL), map3, "PPP", "PrP", " R ");
         provider.addToolRecipe(TOOL_BUILDER.get(FLANGED_MACE.getId()), output, Ref.ID, FLANGED_MACE.getId() + "_flint" , "gtsp_weapons",

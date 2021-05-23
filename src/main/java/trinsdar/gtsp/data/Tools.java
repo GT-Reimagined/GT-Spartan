@@ -29,28 +29,6 @@ import static net.minecraft.item.ItemTier.IRON;
 
 public class Tools {
 
-    public static MaterialTypeItem<?> POLE = new MaterialTypeItem<>("pole", 1, true, muramasa.antimatter.Ref.U * 2, new MaterialTypeItem.ItemSupplier() {
-        @Override
-        public MaterialItem supply(String domain, MaterialType<?> type, Material material) {
-            return new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS));
-        }
-    });
-
-    public static MaterialTypeItem<?> HANDLE = new MaterialTypeItem<>("handle_sp", 1, true, muramasa.antimatter.Ref.U * 2, new MaterialTypeItem.ItemSupplier() {
-        @Override
-        public MaterialItem supply(String domain, MaterialType<?> type, Material material) {
-            return new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS));
-        }
-
-        @SuppressWarnings("unchecked")
-        public ITag.INamedTag<Item> getMaterialTag(Material m) {
-            return (ITag.INamedTag<Item>) this.tagFromString(String.join("", "handle", "/", m.getId()));
-        }
-
-        protected ITag.INamedTag<?> tagFromString(String name) {
-            return TagUtils.getForgeItemTag(name);
-        }
-    });
     public static AntimatterToolType DAGGER = new GTSPToolType(Ref.ID, "dagger", 2, 1, 10, 0.5F, -1.5F, WeaponTraits.THROWABLE).setToolClass(MaterialSwordSp.class);
     public static AntimatterToolType LONGSWORD = new GTSPToolType(Ref.ID, "longsword", 2, 1, 10, 3.5F, -2.6F, WeaponTraits.TWO_HANDED_1, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType KATANA = new GTSPToolType(Ref.ID, "katana", 2, 1, 10, 0.5F, -2.0F, WeaponTraits.TWO_HANDED_1, WeaponTraits.EXTRA_DAMAGE_2_CHEST, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
@@ -70,9 +48,7 @@ public class Tools {
 
 
 
-    public static Material Iron = new Material(Ref.ID, "iron", 0xc8c8c8, TextureSet.NONE, Fe).asMetal(1811, 500, ORE, PLATE, ROD).asPlasma().addTools(IRON.getAttackDamage(), IRON.getEfficiency(), 256, IRON.getHarvestLevel(),  of(Enchantments.SHARPNESS, 1));
-    public static Material Flint = new Material(Ref.ID, "flint", 0x002040, TextureSet.NONE).asDust(GEM).addTools(1.25F, 2.5F, 128, 1, of(Enchantments.FIRE_ASPECT, 1), PICKAXE, AXE, SHOVEL, SWORD, HOE, MORTAR, KNIFE);
-    public static Material Wood = new Material(Ref.ID, "wood", 0x643200, TextureSet.NONE).asDust(PLATE).addHandleStat(12, 0.0F);
+
 
     //TODO:
     /**  Dagger
@@ -96,11 +72,6 @@ public class Tools {
      * */
 
     public static void init(){
-        Material wood = Material.get("wood");
-        if (wood != Data.NULL){
-            HANDLE.forceOverride(wood, ModItems.handle);
-            POLE.forceOverride(wood, ModItems.pole);
-        }
-        Data.Stone.flags(HANDLE, POLE);
+
     }
 }

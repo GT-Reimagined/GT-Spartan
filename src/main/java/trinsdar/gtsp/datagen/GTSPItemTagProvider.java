@@ -38,11 +38,11 @@ public class GTSPItemTagProvider extends AntimatterItemTagProvider {
         addToolTag(Tools.BATTLEAXE);
         addToolTag(Tools.FLANGED_MACE);
         addToolTag(Tools.GLAIVE);
-        this.getOrCreateBuilder(TagUtils.getItemTag(new ResourceLocation("spartanweaponry", "quarterstaves"))).add(Tools.QUARTERSTAFF.getToolStack(Data.NULL, Data.NULL).getItem());
+        this.getOrCreateBuilder(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "quarterstaves"))).add(Tools.QUARTERSTAFF.getToolStack(Data.NULL, Data.NULL).getItem());
     }
 
     public void addToolTag(AntimatterToolType tool){
-        this.getOrCreateBuilder(TagUtils.getItemTag(new ResourceLocation("spartanweaponry", tool.getId() + "s"))).add(tool.getToolStack(Data.NULL, Data.NULL).getItem());
+        this.getOrCreateBuilder(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, tool.getId() + "s"))).add(tool.getToolStack(Data.NULL, Data.NULL).getItem());
     }
 
 }

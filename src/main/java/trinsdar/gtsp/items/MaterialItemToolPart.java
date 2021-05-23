@@ -7,7 +7,7 @@ import muramasa.antimatter.material.MaterialType;
 import muramasa.antimatter.texture.Texture;
 import trinsdar.gtsp.Ref;
 
-import static trinsdar.gtsp.data.Tools.POLE;
+import static trinsdar.gtsp.data.Materials.POLE;
 
 public class MaterialItemToolPart extends MaterialItem implements IMaterialItemSpartan {
     public MaterialItemToolPart(String domain, MaterialType<?> type, Material material, Properties properties) {

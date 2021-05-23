@@ -11,4 +11,5 @@ public class Ref {
     /** Mod ids **/
     public static final String MOD_IE = "immersiveengineering";
     public static final String MOD_CREATE = "create";
+    public static final String MOD_SPARTAN_WEAPONRY = "spartanweaponry";
 }

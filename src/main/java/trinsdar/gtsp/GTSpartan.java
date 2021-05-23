@@ -70,6 +70,7 @@ public class GTSpartan extends AntimatterMod {
         AntimatterDynamics.addProvider(Ref.ID, GTSPLocalizations.en_US::new);
 
         registerRecipeLoaders();
+        AntimatterAPI.addRegistrar(new SpartanRegistrar());
     }
 
     //@SubscribeEvent
