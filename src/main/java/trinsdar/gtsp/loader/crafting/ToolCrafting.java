@@ -49,7 +49,7 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(LONGSWORD.getId()), output, Ref.ID, LONGSWORD.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, LONGSWORD.getToolStack(NULL, NULL), map2.apply(LONGSWORD), " P ", "FPH", "PRP");
         provider.addToolRecipe(TOOL_BUILDER.get(KATANA.getId()), output, Ref.ID, KATANA.getId() + "_with" , "gtsp_weapons",
-                "has_wrench", in, KATANA.getToolStack(NULL, NULL), map2.apply(KATANA), "  P", "FPH", "R  ");
+                "has_wrench", in, KATANA.getToolStack(NULL, NULL), map2.apply(KATANA), " FP", " PH", "R  ");
         provider.addToolRecipe(TOOL_BUILDER.get(SABER.getId()), output, Ref.ID, SABER.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, SABER.getToolStack(NULL, NULL), map2.apply(SABER), " P ", "FPH", "PR ");
         provider.addToolRecipe(TOOL_BUILDER.get(RAPIER.getId()), output, Ref.ID, RAPIER.getId() + "_with" , "gtsp_weapons",
@@ -70,7 +70,7 @@ public class ToolCrafting {
                 "has_wrench", in, LANCE.getToolStack(NULL, NULL), of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag()), " FP", "PRH", "rP ");
 
 
-        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag());
+        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'H', HAMMER.getTag(), 'F', FILE.getTag());
         provider.addToolRecipe(TOOL_BUILDER.get(BATTLEAXE.getId()), output, Ref.ID, BATTLEAXE.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, BATTLEAXE.getToolStack(NULL, NULL), map3, "PPP", "PrP", "FRH");
         provider.addToolRecipe(TOOL_BUILDER.get(FLANGED_MACE.getId()), output, Ref.ID, FLANGED_MACE.getId() + "_with" , "gtsp_weapons",
@@ -121,7 +121,7 @@ public class ToolCrafting {
                 "has_wrench", in, LANCE.getToolStack(flint, NULL), of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(GEM).mats(flint).build()), "  P", "PR ", "rP ");
 
 
-        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.POLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
+        ImmutableMap<Character, Object> map3 = of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'r', PropertyIngredient.builder("secondary").types(ROD).tags(HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
         provider.addToolRecipe(TOOL_BUILDER.get(BATTLEAXE.getId()), output, Ref.ID, BATTLEAXE.getId() + "_flint" , "gtsp_weapons",
                 "has_wrench", in, BATTLEAXE.getToolStack(flint, NULL), map3, "PPP", "PrP", " R ");
         provider.addToolRecipe(TOOL_BUILDER.get(FLANGED_MACE.getId()), output, Ref.ID, FLANGED_MACE.getId() + "_flint" , "gtsp_weapons",

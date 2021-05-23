@@ -4,9 +4,12 @@ import com.oblivioussp.spartanweaponry.api.IWeaponTraitContainer;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
 import com.oblivioussp.spartanweaponry.entity.projectile.ThrowingWeaponEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,5 +31,17 @@ public abstract class ThrowingWeaponEntityMixin extends AbstractArrowEntity {
            return  ((MaterialSwordSp) weapon.getItem()).getMaterial(weapon);
         }
         return container.getMaterial();
+    }
+
+    @Override
+    protected void arrowHit(LivingEntity living) {
+        super.arrowHit(living);
+        if (weapon.getItem().isDamageable()){
+            if (weapon.attemptDamageItem(1, this.world.rand, null)){
+                weapon.shrink(1);
+                this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.remove();
+            }
+        }
     }
 }
