@@ -1,14 +1,17 @@
 package trinsdar.gtsp;
 
+import com.oblivioussp.spartanweaponry.init.ModItems;
 import com.oblivioussp.spartanweaponry.item.HeavyCrossbowItem;
 import com.oblivioussp.spartanweaponry.item.LongbowItem;
 import muramasa.antimatter.Antimatter;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterDynamics;
 import muramasa.antimatter.AntimatterMod;
+import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
+import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.RegistrationEvent;
@@ -37,6 +40,9 @@ import trinsdar.gtsp.datagen.GTSPRecipes;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
+
+import static trinsdar.gtsp.data.Materials.HANDLE;
+import static trinsdar.gtsp.data.Materials.POLE;
 
 
 @Mod(Ref.ID)
@@ -108,6 +114,14 @@ public class GTSpartan extends AntimatterMod {
     public void onRegistrationEvent(RegistrationEvent event, Dist side) {
         if (event == RegistrationEvent.DATA_INIT) {
             Tools.init();
+        }
+        if (event == RegistrationEvent.DATA_READY){
+            Material wood = Material.get("wood");
+            if (wood != Data.NULL){
+                Antimatter.LOGGER.info("Overriding wood");
+                HANDLE.forceOverride(wood, ModItems.handle);
+                POLE.forceOverride(wood, ModItems.pole);
+            }
         }
     }
 

@@ -1,6 +1,8 @@
 package trinsdar.gtsp.data;
 
 import com.oblivioussp.spartanweaponry.init.ModItems;
+import muramasa.antimatter.Antimatter;
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.material.MaterialItem;
@@ -40,11 +42,6 @@ public class Materials {
 
 
     public static void init(){
-        Material wood = Material.get("wood");
-        if (wood != Data.NULL){
-            HANDLE.forceOverride(wood, ModItems.handle);
-            POLE.forceOverride(wood, ModItems.pole);
-        }
         Data.Stone.flags(HANDLE, POLE);
         MaterialTag.HANDLE.all().forEach(m -> {
             if (m.getId().equals("wood") || m == Data.NULL) return;
