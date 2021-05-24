@@ -4,12 +4,14 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
+import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.api.trait.IMeleeTraitCallback;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.material.Material;
+import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
@@ -24,11 +26,15 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.ToolType;
+import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.data.Tools;
 import trinsdar.gtsp.tool.GTSPToolType;
 import trinsdar.gtsp.tool.GTSPWeaponMaterial;
@@ -76,6 +82,17 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
 
     @Override
     public void onItemModelBuild(IItemProvider item, AntimatterItemModelProvider prov) {
+        if (this.hasWeaponTrait(WeaponTraits.THROWABLE)){
+            String id = this.getId();
+            ItemModelBuilder builder = prov.getBuilder(id +"_throwing");
+            builder.parent(new ModelFile.UncheckedModelFile(new ResourceLocation(this.getParent() + "_throwing")));
+            Texture[] textures = getTextures();
+            for (int i = 0; i < textures.length; i++) {
+                builder.texture("layer" + i, textures[i]);
+            }
+            prov.tex(item, getParent(), getTextures()).override().predicate(new ResourceLocation("throwing"), 1).model(new ModelFile.UncheckedModelFile(new ResourceLocation(Ref.ID, "item/" + id +"_throwing")));
+            return;
+        }
         prov.tex(item, getParent(), getTextures());
     }
 
@@ -113,6 +130,8 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
 
         return modifiers;
     }
+
+
 
     /*@Override
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
