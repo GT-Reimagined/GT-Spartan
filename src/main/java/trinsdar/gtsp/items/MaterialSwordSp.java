@@ -103,6 +103,12 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
         return SpartanWeaponryAPI.MOD_ID + ":item/" + id + "_wood";
     }
 
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        onGenericAddInformation(stack, tooltip, flagIn);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+    }
+
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {
         Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
         if (equipmentSlot == EquipmentSlotType.MAINHAND) {

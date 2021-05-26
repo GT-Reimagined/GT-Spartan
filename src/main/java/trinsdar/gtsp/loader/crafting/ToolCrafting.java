@@ -45,7 +45,7 @@ public class ToolCrafting {
         String[] strings2Gem = new String[]{"FGH", " R ", " R "};
 
         provider.addToolRecipe(TOOL_BUILDER.get(DAGGER.getId()), output, Ref.ID, DAGGER.getId() + "_with" , "gtsp_weapons",
-                "has_wrench", in, DAGGER.getToolStack(NULL, NULL), map2.apply(DAGGER), "FPH", " R ");
+                "has_wrench", in, DAGGER.getToolStack(NULL, NULL), map2.apply(DAGGER), "FP", "HR");
         provider.addToolRecipe(TOOL_BUILDER.get(LONGSWORD.getId()), output, Ref.ID, LONGSWORD.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, LONGSWORD.getToolStack(NULL, NULL), map2.apply(LONGSWORD), " P ", "FPH", "PRP");
         provider.addToolRecipe(TOOL_BUILDER.get(KATANA.getId()), output, Ref.ID, KATANA.getId() + "_with" , "gtsp_weapons",

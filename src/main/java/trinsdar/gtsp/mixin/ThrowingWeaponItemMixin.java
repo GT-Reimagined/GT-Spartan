@@ -25,6 +25,9 @@ public class ThrowingWeaponItemMixin extends Item {
     @Shadow
     protected WeaponMaterial material;
 
+    @Shadow
+    protected float attackDamage;
+
     private ThrowingWeaponItemMixin(Properties properties) {
         super(properties);
     }
@@ -51,5 +54,13 @@ public class ThrowingWeaponItemMixin extends Item {
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
         }
         return material;
+    }
+
+    @Redirect(method = "onPlayerStoppedUsing", at = @At(value = "INVOKE", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;getDirectAttackDamage()F"))
+    public float getStackedDirectAttackDamage(ThrowingWeaponItem item, ItemStack stack, World world, LivingEntity entity, int timeLeft){
+        if (item instanceof MaterialThrowingWeapon){
+            return ((MaterialThrowingWeapon)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialThrowingWeapon)item).getTier(stack).getAttackDamage();
+        }
+        return attackDamage;
     }
 }

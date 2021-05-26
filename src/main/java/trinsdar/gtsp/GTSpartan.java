@@ -18,6 +18,7 @@ import muramasa.antimatter.registration.RegistrationEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -30,6 +31,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
@@ -119,8 +121,8 @@ public class GTSpartan extends AntimatterMod {
             Material wood = Material.get("wood");
             if (wood != Data.NULL){
                 Antimatter.LOGGER.info("Overriding wood");
-                HANDLE.forceOverride(wood, ModItems.handle);
-                POLE.forceOverride(wood, ModItems.pole);
+                HANDLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "handle")));
+                POLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "pole")));
             }
         }
     }

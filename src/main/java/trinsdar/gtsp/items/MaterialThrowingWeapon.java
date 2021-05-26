@@ -14,6 +14,7 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -21,6 +22,8 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.ToolType;
@@ -29,6 +32,7 @@ import trinsdar.gtsp.tool.GTSPToolType;
 import trinsdar.gtsp.tool.GTSPWeaponMaterial;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Set;
 
 public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntimatterTool, IMaterialItemSpartan {
@@ -86,6 +90,12 @@ public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntim
     @Override
     public String getParent() {
         return SpartanWeaponryAPI.MOD_ID + ":item/" + getId() + "_wood";
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        onGenericAddInformation(stack, tooltip, flagIn);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType equipmentSlot, ItemStack stack) {

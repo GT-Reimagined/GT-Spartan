@@ -25,6 +25,9 @@ public abstract class SwordBaseItemMixin extends SwordItem {
     @Shadow
     protected WeaponMaterial material;
 
+    @Shadow
+    protected float attackDamage;
+
     public SwordBaseItemMixin(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
     }
@@ -59,6 +62,14 @@ public abstract class SwordBaseItemMixin extends SwordItem {
             return  ((MaterialSwordSp) stack.getItem()).getMaterial(stack);
         }
         return material;
+    }
+
+    @Redirect(method = "onPlayerStoppedUsing", at = @At(value = "INVOKE", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;getDirectAttackDamage()F"))
+    public float getStackedDirectAttackDamage(SwordBaseItem item, ItemStack stack, World world, LivingEntity entity, int timeLeft){
+        if (item instanceof MaterialSwordSp){
+            return ((MaterialSwordSp)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialSwordSp)item).getTier(stack).getAttackDamage();
+        }
+        return attackDamage;
     }
 
 
