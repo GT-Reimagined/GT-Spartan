@@ -1,12 +1,17 @@
 package trinsdar.gtsp.tool;
 
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.items.MaterialSwordSp;
 
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class GTSPToolType  extends AntimatterToolType {
@@ -41,5 +46,10 @@ public class GTSPToolType  extends AntimatterToolType {
         Item.Properties properties = new Item.Properties().group(getItemGroup());
         if (!getRepairability()) properties.setNoRepair();
         return properties;
+    }
+
+    @Override
+    public ItemStack getToolStack(Material primary, Material secondary) {
+        return Objects.requireNonNull(AntimatterAPI.get(IAntimatterTool.class, Ref.ID + ":" + getId())).asItemStack(primary, secondary);
     }
 }

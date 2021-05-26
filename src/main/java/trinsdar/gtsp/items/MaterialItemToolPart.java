@@ -30,7 +30,7 @@ public class MaterialItemToolPart extends MaterialItem implements IMaterialItemS
         return "minecraft:item/handheld";
     }
 
-    public ITag.INamedTag<Item> getTag() {
+    /*public ITag.INamedTag<Item> getTag() {
         return TagUtils.getForgeItemTag(String.join("", Utils.getConventionalMaterialType(type), "/", material.getId()).replace("_sp", ""));
-    }
+    }*/
 }

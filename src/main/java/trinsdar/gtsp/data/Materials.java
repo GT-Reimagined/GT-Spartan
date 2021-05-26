@@ -27,13 +27,9 @@ import static muramasa.antimatter.material.Element.Fe;
 import static net.minecraft.item.ItemTier.IRON;
 
 public class Materials {
-    public static MaterialTypeItem<?> POLE = new MaterialTypeItem<>("pole", 1, true, muramasa.antimatter.Ref.U * 2, new MaterialTypeItem.ItemSupplier() {
-        @Override
-        public MaterialItem supply(String domain, MaterialType<?> type, Material material) {
-            return new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS));
-        }
-    });
-    public static MaterialTypeItem<MaterialTypeItemHandle> HANDLE = new MaterialTypeItemHandle("handle_sp", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
+    public static MaterialTypeItem<?> POLE = new MaterialTypeItem<>("pole", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
+    //public static MaterialTypeItem<MaterialTypeItemHandle> HANDLE = new MaterialTypeItemHandle("handle_sp", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
+    public static MaterialTypeItem<?> HANDLE = new MaterialTypeItem<>("handle", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
 
     //public static Material Iron = new Material(Ref.ID, "iron", 0xc8c8c8, TextureSet.NONE, Fe).asMetal(1811, 500, ORE, PLATE, ROD).asPlasma().addTools(IRON.getAttackDamage(), IRON.getEfficiency(), 256, IRON.getHarvestLevel());
     //public static Material TungstenSteel = new Material(Ref.ID, "tungstensteel", 0x6464a0, TextureSet.NONE).asMetal(3000, 3000, PLATE, ROD, GEAR).addTools(6.0F, 10.0F, 5120, 4);

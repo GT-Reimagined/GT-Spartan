@@ -1,5 +1,6 @@
 package trinsdar.gtsp.datagen;
 
+import com.oblivioussp.spartanweaponry.init.ModItems;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterItemTagProvider;
@@ -39,6 +40,8 @@ public class GTSPItemTagProvider extends AntimatterItemTagProvider {
         addToolTag(Tools.FLANGED_MACE);
         addToolTag(Tools.GLAIVE);
         this.getOrCreateBuilder(TagUtils.getItemTag(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "quarterstaves"))).add(Tools.QUARTERSTAFF.getToolStack(Data.NULL, Data.NULL).getItem());
+        this.getOrCreateBuilder(TagUtils.getForgeItemTag("handles/wood")).add(ModItems.handle);
+        this.getOrCreateBuilder(TagUtils.getForgeItemTag("poles/wood")).add(ModItems.pole);
     }
 
     public void addToolTag(AntimatterToolType tool){

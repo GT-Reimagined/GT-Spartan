@@ -131,15 +131,4 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(QUARTERSTAFF.getId()), output, Ref.ID, QUARTERSTAFF.getId() + "_flint" , "gtsp_weapons",
                 "has_wrench", in, QUARTERSTAFF.getToolStack(flint, NULL), map1, "R", "P");
     }
-
-
-    public static ItemStack resolveStack(IAntimatterTool tool, Material primary, Material secondary, long startingEnergy, long maxEnergy) {
-        ItemStack stack = new ItemStack(tool.getItem());
-        tool.validateTag(stack, primary, secondary, startingEnergy, maxEnergy);
-        Map<Enchantment, Integer> mainEnchants = primary.getEnchantments();
-        if (!mainEnchants.isEmpty()) {
-            mainEnchants.entrySet().stream().filter(e -> e.getKey().canApply(stack)).forEach(e -> stack.addEnchantment(e.getKey(), e.getValue()));
-        }
-        return stack;
-    }
 }
