@@ -32,7 +32,7 @@ public class ThrowingWeaponItemMixin extends Item {
         super(properties);
     }
 
-    @Redirect(method = "inventoryTick", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "inventoryTick", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:Lcom/oblivioussp/spartanweaponry/api/WeaponMaterial;", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(ThrowingWeaponItem item, ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected){
         if (stack.getItem() instanceof MaterialThrowingWeapon){
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
@@ -40,7 +40,7 @@ public class ThrowingWeaponItemMixin extends Item {
         return material;
     }
 
-    @Redirect(method = "addInformation", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "addInformation", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:Lcom/oblivioussp/spartanweaponry/api/WeaponMaterial;", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(ThrowingWeaponItem item, ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn){
         if (stack.getItem() instanceof MaterialThrowingWeapon){
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
@@ -48,7 +48,7 @@ public class ThrowingWeaponItemMixin extends Item {
         return material;
     }
 
-    @Redirect(method = "hitEntity", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:I", opcode = Opcodes.GETFIELD))
+    @Redirect(method = "hitEntity", at = @At(value = "FIELD", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;material:Lcom/oblivioussp/spartanweaponry/api/WeaponMaterial;", opcode = Opcodes.GETFIELD))
     public WeaponMaterial getMaterial(ThrowingWeaponItem item, ItemStack stack, LivingEntity target, LivingEntity attacker){
         if (stack.getItem() instanceof MaterialThrowingWeapon){
             return  ((MaterialThrowingWeapon) stack.getItem()).getMaterial(stack);
