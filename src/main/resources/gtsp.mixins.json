@@ -5,7 +5,12 @@
   "refmap": "gtsp.refmap.json",
   "mixins": [
     "ThrowingWeaponEntityMixin",
-    "SwordBaseItemMixin"
+    "SwordBaseItemMixin",
+    "ThrowingWeaponItemMixin"
+  ],
+  "client": [
+    "SwordBaseItemClientMixin",
+    "ThrowingWeaponItemClientMixin"
   ],
   "minVersion": "0.8"
 }
