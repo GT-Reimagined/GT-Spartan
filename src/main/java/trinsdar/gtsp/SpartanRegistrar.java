@@ -18,4 +18,8 @@ public class SpartanRegistrar implements IAntimatterRegistrar {
     public String getId() {
         return Ref.MOD_SPARTAN_WEAPONRY;
     }
+
+    public int getPriority() {
+        return Integer.MIN_VALUE;
+    }
 }

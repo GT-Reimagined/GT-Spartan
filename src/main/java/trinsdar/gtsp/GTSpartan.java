@@ -127,6 +127,10 @@ public class GTSpartan extends AntimatterMod {
         }
     }
 
+    public int getPriority() {
+        return 4000;
+    }
+
     @Override
     public String getId() {
         return Ref.ID;
