@@ -5,22 +5,18 @@ import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
 import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.tool.IAntimatterTool;
 import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
 import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.data.Materials;
 
-import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static com.google.common.collect.ImmutableMap.of;
 import static muramasa.antimatter.Data.*;
-import static muramasa.antimatter.Data.NULL;
 import static muramasa.antimatter.material.MaterialTag.HANDLE;
+import static muramasa.antimatter.recipe.RecipeBuilders.TOOL_BUILDER;
 import static trinsdar.gtsp.data.Tools.*;
 
 public class ToolCrafting {
