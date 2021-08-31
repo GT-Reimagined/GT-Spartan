@@ -51,7 +51,7 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
         super(type.getId(), prop, GTSPWeaponMaterial.NULL, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
         this.type = type;
         this.domain = domain;
-        AntimatterAPI.register(IAntimatterTool.class, Ref.ID + ":" + getId(), this);
+        AntimatterAPI.register(IAntimatterTool.class, getId(), this);
     }
 
     @Override
