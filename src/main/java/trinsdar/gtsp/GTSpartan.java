@@ -1,6 +1,5 @@
 package trinsdar.gtsp;
 
-import com.oblivioussp.spartanweaponry.init.ModItems;
 import com.oblivioussp.spartanweaponry.item.HeavyCrossbowItem;
 import com.oblivioussp.spartanweaponry.item.LongbowItem;
 import muramasa.antimatter.Antimatter;
@@ -10,19 +9,16 @@ import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.RegistrationEvent;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;

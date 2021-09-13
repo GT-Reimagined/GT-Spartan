@@ -8,13 +8,9 @@ import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.system.CallbackI;
 import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.data.Tools;
-import trinsdar.gtsp.tool.GTSPToolType;
 
 public class GTSPItemTagProvider extends AntimatterItemTagProvider {
     public GTSPItemTagProvider(String providerDomain, String providerName, boolean replace, DataGenerator gen, BlockTagsProvider p, ExistingFileHelperOverride fh) {

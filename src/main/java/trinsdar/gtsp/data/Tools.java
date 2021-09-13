@@ -1,36 +1,19 @@
 package trinsdar.gtsp.data;
 
 import com.oblivioussp.spartanweaponry.api.WeaponTraits;
-import com.oblivioussp.spartanweaponry.init.ModItems;
-import muramasa.antimatter.Data;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialItem;
-import muramasa.antimatter.material.MaterialType;
-import muramasa.antimatter.material.MaterialTypeItem;
-import muramasa.antimatter.material.TextureSet;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.behaviour.BehaviourLogStripping;
 import muramasa.antimatter.tool.behaviour.BehaviourTreeFelling;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
 import trinsdar.gtsp.Ref;
-import trinsdar.gtsp.items.MaterialItemToolPart;
 import trinsdar.gtsp.items.MaterialSwordSp;
 import trinsdar.gtsp.tool.GTSPToolType;
 
-import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.Data.*;
-import static muramasa.antimatter.Data.KNIFE;
-import static muramasa.antimatter.Data.MORTAR;
-import static muramasa.antimatter.material.Element.Fe;
+import static muramasa.antimatter.Data.AXE;
 import static net.minecraft.block.material.Material.BAMBOO;
 import static net.minecraft.block.material.Material.PLANTS;
 import static net.minecraft.block.material.Material.TALL_PLANTS;
 import static net.minecraft.block.material.Material.WOOD;
-import static net.minecraft.item.ItemTier.IRON;
 
 
 public class Tools {

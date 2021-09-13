@@ -1,20 +1,14 @@
 package trinsdar.gtsp.loader.crafting;
 
 import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.util.TagUtils;
-import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
-import trinsdar.gtsp.data.Materials;
 
 import java.util.function.Consumer;
 
-import static muramasa.antimatter.Data.GEM;
-import static muramasa.antimatter.Data.NULL;
 import static muramasa.antimatter.Data.ROD;
 import static trinsdar.gtsp.data.Materials.HANDLE;
 import static trinsdar.gtsp.data.Materials.POLE;

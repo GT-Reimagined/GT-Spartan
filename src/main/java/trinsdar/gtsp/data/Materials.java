@@ -1,35 +1,14 @@
 package trinsdar.gtsp.data;
 
-import com.oblivioussp.spartanweaponry.init.ModItems;
-import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.Data;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialItem;
 import muramasa.antimatter.material.MaterialTag;
-import muramasa.antimatter.material.MaterialType;
 import muramasa.antimatter.material.MaterialTypeItem;
-import muramasa.antimatter.material.TextureSet;
-import muramasa.antimatter.util.TagUtils;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
 import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.items.MaterialItemToolPart;
-import trinsdar.gtsp.items.MaterialTypeItemHandle;
-
-import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.Data.*;
-import static muramasa.antimatter.Data.KNIFE;
-import static muramasa.antimatter.Data.MORTAR;
-import static muramasa.antimatter.Data.PLATE;
-import static muramasa.antimatter.material.Element.Fe;
-import static net.minecraft.item.ItemTier.IRON;
-import static net.minecraft.item.ItemTier.NETHERITE;
 
 public class Materials {
     public static MaterialTypeItem<?> POLE = new MaterialTypeItem<>("pole", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
-    //public static MaterialTypeItem<MaterialTypeItemHandle> HANDLE = new MaterialTypeItemHandle("handle_sp", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
     public static MaterialTypeItem<?> HANDLE = new MaterialTypeItem<>("handle", 1, true, muramasa.antimatter.Ref.U * 2, (domain, type, material) -> new MaterialItemToolPart(Ref.ID, type, material, new Item.Properties().group(muramasa.antimatter.Ref.TAB_MATERIALS)));
 
     //public static Material Iron = new Material(Ref.ID, "iron", 0xc8c8c8, TextureSet.NONE, Fe).asMetal(1811, 500, ORE, PLATE, ROD).asPlasma().addTools(IRON.getAttackDamage(), IRON.getEfficiency(), 256, IRON.getHarvestLevel());

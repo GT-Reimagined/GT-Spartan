@@ -8,7 +8,6 @@ import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.Utils;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.items.MaterialSwordSp;
 
 import java.util.Objects;

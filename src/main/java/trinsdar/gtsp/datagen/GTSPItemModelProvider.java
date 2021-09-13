@@ -6,7 +6,6 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
 import trinsdar.gtsp.items.IMaterialItemSpartan;
 
 public class GTSPItemModelProvider extends AntimatterItemModelProvider {
