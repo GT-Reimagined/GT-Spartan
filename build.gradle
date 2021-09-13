@@ -148,8 +148,8 @@ dependencies {
     //implementation fg.deobf("curse.maven:antimatter-462713:${antimatter_file}")
     //implementation fg.deobf("curse.maven:tesseract-462718:${tesseract_file}")
 
-    runtimeOnly fg.deobf("com.github.Trinsdar:AntimatterAPI:${antimatter_version}")
-    compileOnly ("com.github.Trinsdar:AntimatterAPI:${antimatter_version}")
+    runtimeOnly fg.deobf("com.github.Gregtech-Intergalactical:AntimatterAPI:${antimatter_version}")
+    compileOnly ("com.github.Gregtech-Intergalactical:AntimatterAPI:${antimatter_version}")
 
     runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
     compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")

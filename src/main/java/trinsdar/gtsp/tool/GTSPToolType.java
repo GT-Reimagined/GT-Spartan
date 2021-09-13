@@ -50,6 +50,6 @@ public class GTSPToolType  extends AntimatterToolType {
 
     @Override
     public ItemStack getToolStack(Material primary, Material secondary) {
-        return Objects.requireNonNull(AntimatterAPI.get(IAntimatterTool.class, Ref.ID + ":" + getId())).asItemStack(primary, secondary);
+        return Objects.requireNonNull(AntimatterAPI.get(IAntimatterTool.class, getId())).asItemStack(primary, secondary);
     }
 }
