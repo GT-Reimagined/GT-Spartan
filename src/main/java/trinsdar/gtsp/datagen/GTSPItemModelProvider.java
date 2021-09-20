@@ -15,14 +15,6 @@ public class GTSPItemModelProvider extends AntimatterItemModelProvider {
     }
 
     public ItemModelBuilder tex(IItemProvider item, String parent, ResourceLocation... textures) {
-        if (item.asItem() instanceof IMaterialItemSpartan){
-            ItemModelBuilder builder = getBuilder(item);
-            builder.parent(new ModelFile.UncheckedModelFile(new ResourceLocation(((IMaterialItemSpartan)item.asItem()).getParent())));
-            for (int i = 0; i < textures.length; i++) {
-                builder.texture("layer" + i, textures[i]);
-            }
-            return builder;
-        }
         return super.tex(item, parent, textures);
     }
 }
