@@ -19,9 +19,9 @@ public class Materials {
 
     public static void init(){
         Data.Stone.flags(HANDLE, POLE);
-        MaterialTag.HANDLE.all().forEach(m -> {
+        /*MaterialTag.HANDLE.all().forEach(m -> {
             if (m.getId().equals("wood") || m == Data.NULL) return;
             m.flags(HANDLE, POLE);
-        });
+        });*/
     }
 }
