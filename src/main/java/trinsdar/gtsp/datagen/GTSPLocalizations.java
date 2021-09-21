@@ -20,7 +20,7 @@ public class GTSPLocalizations {
 
         @Override
         protected void processTranslations(String domain, String locale) {
-            super.processTranslations(domain, locale);
+            //super.processTranslations(domain, locale);
         }
     }
 
