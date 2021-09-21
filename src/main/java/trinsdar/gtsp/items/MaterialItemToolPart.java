@@ -33,10 +33,10 @@ public class MaterialItemToolPart extends MaterialItem implements IMaterialItemS
 
     @Override
     public void onItemModelBuild(IItemProvider item, AntimatterItemModelProvider prov) {
-        /*ItemModelBuilder builder = prov.getBuilder(item);
+        ItemModelBuilder builder = prov.getBuilder(item);
         builder.parent(new ModelFile.UncheckedModelFile(new ResourceLocation(this.getParent())));
         for (int i = 0; i < getTextures().length; i++) {
             builder.texture("layer" + i, getTextures()[i]);
-        }*/
+        }
     }
 }

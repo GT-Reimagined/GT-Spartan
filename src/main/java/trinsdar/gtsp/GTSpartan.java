@@ -9,6 +9,8 @@ import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.Data;
 import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
+import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
+import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
@@ -31,9 +33,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
-import trinsdar.gtsp.datagen.GTSPItemModelProvider;
 import trinsdar.gtsp.datagen.GTSPItemTagProvider;
-import trinsdar.gtsp.datagen.GTSPLocalizations;
 import trinsdar.gtsp.datagen.GTSPRecipes;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
@@ -64,14 +64,14 @@ public class GTSpartan extends AntimatterMod {
         //if (ModList.get().isLoaded(Ref.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
 
-        AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
+        AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
         AntimatterDynamics.addProvider(Ref.ID, g -> {
             p[0] = new AntimatterBlockTagProvider(Ref.ID, Ref.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
             return p[0];
         });
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemTagProvider(Ref.ID, Ref.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPRecipes(Ref.ID, Ref.NAME.concat(" Recipes"), g));
-        AntimatterDynamics.addProvider(Ref.ID, GTSPLocalizations.en_US::new);
+        AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterLanguageProvider(Ref.ID, Ref.NAME + " en_us Localization", "en_us", g));
 
         registerRecipeLoaders();
         AntimatterAPI.addRegistrar(new SpartanRegistrar());
