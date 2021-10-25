@@ -92,7 +92,7 @@ public class GTSpartan extends AntimatterMod {
     }
 
     private void registerRecipeLoaders() {
-        IRecipeRegistrate loader = AntimatterAPI.getRecipeRegistrate();
+        IRecipeRegistrate loader = AntimatterAPI.getRecipeRegistrate(Ref.ID);
     }
 
     private void clientSetup(final FMLClientSetupEvent e) {

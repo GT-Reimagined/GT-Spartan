@@ -42,7 +42,7 @@ public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntim
         super(type.getId(), prop, GTSPWeaponMaterial.NULL, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed(), type.getWeaponTraits());
         this.type = type;
         this.domain = domain;
-        AntimatterAPI.register(IAntimatterTool.class, getId(), this);
+        AntimatterAPI.register(IAntimatterTool.class, this);
     }
 
     @Override
