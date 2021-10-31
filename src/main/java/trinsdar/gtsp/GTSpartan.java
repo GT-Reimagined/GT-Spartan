@@ -73,7 +73,6 @@ public class GTSpartan extends AntimatterMod {
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPRecipes(Ref.ID, Ref.NAME.concat(" Recipes"), g));
         AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterLanguageProvider(Ref.ID, Ref.NAME + " en_us Localization", "en_us", g));
 
-        registerRecipeLoaders();
         AntimatterAPI.addRegistrar(new SpartanRegistrar());
     }
 
@@ -89,10 +88,6 @@ public class GTSpartan extends AntimatterMod {
                 }
             }
         }
-    }
-
-    private void registerRecipeLoaders() {
-        IRecipeRegistrate loader = AntimatterAPI.getRecipeRegistrate(Ref.ID);
     }
 
     private void clientSetup(final FMLClientSetupEvent e) {
