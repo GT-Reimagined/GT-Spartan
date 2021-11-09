@@ -11,9 +11,9 @@ import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
+import muramasa.antimatter.event.AntimatterCraftingEvent;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
-import muramasa.antimatter.recipe.loader.IRecipeRegistrate;
 import muramasa.antimatter.registration.RegistrationEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -34,7 +34,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
 import trinsdar.gtsp.datagen.GTSPItemTagProvider;
-import trinsdar.gtsp.datagen.GTSPRecipes;
+import trinsdar.gtsp.loader.crafting.MaterialCrafting;
+import trinsdar.gtsp.loader.crafting.ToolCrafting;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
@@ -70,10 +71,15 @@ public class GTSpartan extends AntimatterMod {
             return p[0];
         });
         AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemTagProvider(Ref.ID, Ref.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
-        AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPRecipes(Ref.ID, Ref.NAME.concat(" Recipes"), g));
         AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterLanguageProvider(Ref.ID, Ref.NAME + " en_us Localization", "en_us", g));
 
         AntimatterAPI.addRegistrar(new SpartanRegistrar());
+        MinecraftForge.EVENT_BUS.addListener(GTSpartan::registerCraftingLoaders);
+    }
+
+    private static void registerCraftingLoaders(AntimatterCraftingEvent event){
+        event.addLoader(ToolCrafting::loadRecipes);
+        event.addLoader(MaterialCrafting::loadRecipes);
     }
 
     //@SubscribeEvent
