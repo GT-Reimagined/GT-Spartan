@@ -45,7 +45,7 @@ public abstract class ThrowingWeaponItemMixin extends Item {
     @Redirect(method = "onPlayerStoppedUsing", at = @At(value = "INVOKE", target = "Lcom/oblivioussp/spartanweaponry/item/ThrowingWeaponItem;getDirectAttackDamage()F"))
     public float getStackedDirectAttackDamage(ThrowingWeaponItem item, ItemStack stack, World world, LivingEntity entity, int timeLeft){
         if (item instanceof MaterialThrowingWeapon){
-            return ((MaterialThrowingWeapon)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialThrowingWeapon)item).getTier(stack).getAttackDamage();
+            return ((MaterialThrowingWeapon)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialThrowingWeapon)item).getTier(stack).getAttackDamageBonus();
         }
         return attackDamage;
     }

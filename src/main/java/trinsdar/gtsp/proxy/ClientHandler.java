@@ -18,7 +18,7 @@ public class ClientHandler implements IProxyHandler {
 
     @Override
     public World getClientWorld() {
-        return Minecraft.getInstance().world;
+        return Minecraft.getInstance().level;
     }
 
     @Override

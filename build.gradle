@@ -8,6 +8,10 @@ buildscript {
             name = 'sponge'
             url = 'https://repo.spongepowered.org/maven'
         }
+        maven {
+            name = 'parchment'
+            url = 'https://maven.parchmentmc.org'
+        }
         maven { url 'https://dvs1.progwml6.com/files/maven' }
         maven {
             url "https://plugins.gradle.org/m2/"
@@ -16,6 +20,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
@@ -36,6 +41,7 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${mod_version}"
 group = 'trinsdar.gtsp' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -59,7 +65,7 @@ sourceSets {
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: "${mappings_version}"
+    mappings channel: 'parchment', version: "${mappings_version}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')

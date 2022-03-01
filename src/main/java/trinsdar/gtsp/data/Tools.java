@@ -11,8 +11,8 @@ import trinsdar.gtsp.tool.GTSPToolType;
 
 import static muramasa.antimatter.Data.AXE;
 import static net.minecraft.block.material.Material.BAMBOO;
-import static net.minecraft.block.material.Material.PLANTS;
-import static net.minecraft.block.material.Material.TALL_PLANTS;
+import static net.minecraft.block.material.Material.PLANT;
+import static net.minecraft.block.material.Material.REPLACEABLE_PLANT;
 import static net.minecraft.block.material.Material.WOOD;
 
 
@@ -30,7 +30,7 @@ public class Tools {
     public static AntimatterToolType HALBERD = new GTSPToolType(Ref.ID, "halberd", 2, 1, 10, 5.0F, -2.8F, WeaponTraits.TWO_HANDED_2, WeaponTraits.REACH_1, WeaponTraits.SHIELD_BREACH).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType PIKE = new GTSPToolType(Ref.ID, "pike", 2, 1, 10, 3.0F, -2.6F, WeaponTraits.TWO_HANDED_1, WeaponTraits.REACH_2).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType LANCE = new GTSPToolType(Ref.ID, "lance", 2, 1, 10, 3.0F, -3F, WeaponTraits.TWO_HANDED_2, WeaponTraits.REACH_1, WeaponTraits.SHIELD_BREACH).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
-    public static AntimatterToolType BATTLEAXE = new GTSPToolType(Ref.ID, "battleaxe", 2, 1, 10, 5.0F, -3F, WeaponTraits.TWO_HANDED_1, WeaponTraits.VERSATILE).setToolClass(MaterialSwordSp.class).addToolTypes("axe").setTag(AXE).addEffectiveMaterials(WOOD, PLANTS, TALL_PLANTS, BAMBOO);
+    public static AntimatterToolType BATTLEAXE = new GTSPToolType(Ref.ID, "battleaxe", 2, 1, 10, 5.0F, -3F, WeaponTraits.TWO_HANDED_1, WeaponTraits.VERSATILE).setToolClass(MaterialSwordSp.class).addToolTypes("axe").setTag(AXE).addEffectiveMaterials(WOOD, PLANT, REPLACEABLE_PLANT, BAMBOO);
     public static AntimatterToolType FLANGED_MACE = new GTSPToolType(Ref.ID, "flanged_mace", 2, 1, 10, 3.0F, -2.8F, WeaponTraits.EXTRA_DAMAGE_50P_UNDEAD).setToolClass(MaterialSwordSp.class);
     public static AntimatterToolType GLAIVE = new GTSPToolType(Ref.ID, "glaive", 2, 1, 10, 4.0F, -3F, WeaponTraits.TWO_HANDED_1, WeaponTraits.REACH_1, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType QUARTERSTAFF = new GTSPToolType(Ref.ID, "quarterstaff", 2, 1, 10, 3.0F, -2.6F, WeaponTraits.TWO_HANDED_1, WeaponTraits.SWEEP_DAMAGE_HALF).setToolClass(MaterialSwordSp.class);

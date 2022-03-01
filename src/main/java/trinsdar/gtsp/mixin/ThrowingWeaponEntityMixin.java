@@ -34,12 +34,12 @@ public abstract class ThrowingWeaponEntityMixin extends AbstractArrowEntity {
     }
 
     @Override
-    protected void arrowHit(LivingEntity living) {
-        super.arrowHit(living);
-        if (weapon.getItem().isDamageable()){
-            if (weapon.attemptDamageItem(1, this.world.rand, null)){
+    protected void doPostHurtEffects(LivingEntity living) {
+        super.doPostHurtEffects(living);
+        if (weapon.getItem().canBeDepleted()){
+            if (weapon.hurt(1, this.level.getRandom(), null)){
                 weapon.shrink(1);
-                this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.level.playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
                 this.remove();
             }
         }

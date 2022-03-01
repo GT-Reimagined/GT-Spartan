@@ -55,7 +55,7 @@ public abstract class SwordBaseItemMixin extends SwordItem {
     @Redirect(method = "onPlayerStoppedUsing", at = @At(value = "INVOKE", target = "Lcom/oblivioussp/spartanweaponry/item/SwordBaseItem;getDirectAttackDamage()F"))
     public float getStackedDirectAttackDamage(SwordBaseItem item, ItemStack stack, World world, LivingEntity entity, int timeLeft){
         if (item instanceof MaterialSwordSp){
-            return ((MaterialSwordSp)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialSwordSp)item).getTier(stack).getAttackDamage();
+            return ((MaterialSwordSp)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialSwordSp)item).getTier(stack).getAttackDamageBonus();
         }
         return attackDamage;
     }
