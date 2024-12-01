@@ -1,135 +1,67 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        jcenter()
-        mavenCentral()
-        gradlePluginPortal()
-        maven {
-            name = 'sponge'
-            url = 'https://repo.spongepowered.org/maven'
-        }
-        maven {
-            name = 'parchment'
-            url = 'https://maven.parchmentmc.org'
-        }
-        maven { url 'https://dvs1.progwml6.com/files/maven' }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
+    id "java"
 }
-
-repositories {
-    maven { url = 'https://libraries.minecraft.net/' }
-    mavenCentral()
-    maven { url = 'https://maven.minecraftforge.net/' }
-    maven { url 'https://dvs1.progwml6.com/files/maven' }
-    maven { url 'https://jitpack.io' }
-    maven {
-        url = "https://www.cursemaven.com"
-    }
-    maven {
-        url "https://maven.tterrag.com/"
-    }
-}
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 version = "${mod_version}"
-group = 'trinsdar.gtsp' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'GTSpartan'
+group = 'dev.trinsdar' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'gt-spartan'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+apply from: 'https://raw.githubusercontent.com/GregTech-Intergalactical/GradleSripts/main/repositories.gradle'
 //Print out JVM information so that we know what version is running. Extreamly useful for people to know when helping you.
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-        resources {
-            include '**/**'
-            srcDirs += 'src/generated/resources'
-            exclude '.cache'
-            exclude 'Thumbs.db'
-        }
-    }
-}
 
 minecraft {
-    mappings channel: 'parchment', version: "${mappings_version}"
+    mappings channel: 'parchment', version: "${mappings_version}-${minecraft_version}"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
-    runs {
-        client {
+runs {
+        // applies to all the run configs below
+        configureEach {
             workingDirectory project.file('run')
-
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'DEBUG'
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=gtsp.mixins.json"
+
+            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
+            property 'forge.enabledGameTestNamespaces', mod_id
 
             mods {
-                gtsp {
+                "${mod_id}" {
                     source sourceSets.main
                 }
             }
+        }
+
+        client {
+            property 'forge.enabledGameTestNamespaces', mod_id
         }
 
         server {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'DEBUG'
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-            //jvmArgs '-javaagent:/opt/JavaHot/hotswap-agent.jar -XX:TraceRedefineClasses=1'
-            //Comment this if you aren't developing against antimatter locally.
+            workingDirectory project.file('run/server')
+            property 'forge.enabledGameTestNamespaces', mod_id
+            args '--nogui'
+        }
 
-            arg "-mixin.config=gtsp.mixins.json"
-
-            mods {
-                gtsp {
-                    source sourceSets.main
-                }
-            }
+        // This run config launches GameTestServer and runs all registered gametests, then exits.
+        // By default, the server will crash when no gametests are provided.
+        // The gametest system is also enabled by default for other run configs under the /test command.
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', mod_id
         }
 
         data {
-            workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'DEBUG'
-            //jvmArgs '-javaagent:/opt/JavaHot/hotswap-agent.jar -XX:TraceRedefineClasses=1'
-            //Comment this if you aren't developing against antimatter locally.
+            // example of overriding the workingDirectory set in configureEach above
+            workingDirectory project.file('run-data')
 
-            // Recommended logging level for the console
-            property 'forge.logging.console.level', 'debug'
-            arg "-mixin.config=gtsp.mixins.json"
-            args '--mod', 'gtsp', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
-
-            mods {
-                gtsp {
-                    source sourceSets.main
-                }
-            }
+            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
@@ -139,28 +71,21 @@ dependencies {
 
     implementation 'org.apache.commons:commons-collections4:4.4'
 
-    runtimeOnly fg.deobf("curse.maven:world_stripper-250603:3142092")
-    runtimeOnly fg.deobf("curse.maven:world_edit-225608:3172951")
+    runtimeOnly fg.deobf("curse.maven:world_stripper-250603:${world_stripper_file}")
+    runtimeOnly fg.deobf("curse.maven:world_edit-225608:${world_edit_file}")
     implementation fg.deobf("curse.maven:spartan_weaponry-278141:${spartan_weaponry_file}")
     runtimeOnly fg.deobf("curse.maven:top-245211:${top_file}")
-    runtimeOnly fg.deobf("curse.maven:mmmm-225738:3279930")
+    runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
 
+    implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
+    implementation fg.deobf("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"){
+        exclude(group: "maven.modrinth")
+    }
 
-    //implementation fg.deobf("curse.maven:antimatter-462713:${antimatter_file}")
-    //implementation fg.deobf("curse.maven:tesseract-462718:${tesseract_file}")
-
-    runtimeOnly fg.deobf("com.github.Gregtech-Intergalactical:AntimatterAPI:${antimatter_version}")
-    compileOnly ("com.github.Gregtech-Intergalactical:AntimatterAPI:${antimatter_version}")
-
-    runtimeOnly fg.deobf("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
-    compileOnly ("com.github.GregTech-Intergalactical:TesseractAPI:${tesseract_version}")
-
-    //runtimeOnly fg.deobf("com.github.Trinsdar.GT-4-Reimagined:build:2f197b0d9d")
 
     annotationProcessor 'org.spongepowered:mixin:0.8.2:processor'
 
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
+    implementation fg.deobf("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
 
 
@@ -182,8 +107,6 @@ publishing {
         }
     }
 }
-
-apply plugin: 'org.spongepowered.mixin'
 
 mixin {
     add sourceSets.main, "gtsp.refmap.json"
