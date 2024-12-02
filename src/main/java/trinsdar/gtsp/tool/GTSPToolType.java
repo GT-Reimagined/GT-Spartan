@@ -6,29 +6,28 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.Utils;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import trinsdar.gtsp.items.MaterialSwordSp;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
 public class GTSPToolType  extends AntimatterToolType {
-    WeaponTrait[] weaponTraits;
+    RegistryObject<WeaponTrait>[] weaponTraits;
 
-    public GTSPToolType(String domain, String id, int useDurability, int attackDurability, int craftingDurability, float baseAttackDamage, float baseAttackSpeed, WeaponTrait... weaponTraits) {
-        super(domain, id, useDurability, attackDurability, craftingDurability, baseAttackDamage, baseAttackSpeed);
+    @SafeVarargs
+    public GTSPToolType(String domain, String id, int useDurability, int attackDurability, int craftingDurability, float baseAttackDamage, float baseAttackSpeed, RegistryObject<WeaponTrait>... weaponTraits) {
+        super(domain, id, useDurability, attackDurability, craftingDurability, baseAttackDamage, baseAttackSpeed, false);
         this.weaponTraits = weaponTraits;
         if (!id.equals("boomerang")) {
             this.setOverlayLayers(2);
         }
     }
 
-    public WeaponTrait[] getWeaponTraits() {
+    /*public WeaponTrait[] getWeaponTraits() {
         return weaponTraits;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public IAntimatterTool instantiateTools(String domain) {
         if (this.getToolClass() == MaterialSwordSp.class) return new MaterialSwordSp(domain, this, prepareInstantiation(domain));
         return super.instantiateTools(domain);
@@ -50,5 +49,5 @@ public class GTSPToolType  extends AntimatterToolType {
     @Override
     public ItemStack getToolStack(Material primary, Material secondary) {
         return Objects.requireNonNull(AntimatterAPI.get(IAntimatterTool.class, getId(), getDomain())).asItemStack(primary, secondary);
-    }
+    }*/
 }

@@ -1,15 +1,14 @@
 package trinsdar.gtsp.data;
 
 import muramasa.antimatter.util.TagUtils;
-import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
-
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 
 
 public class CustomTags {
 
 
-    public static ITag.INamedTag<Item> getTag(String id){
-        return TagUtils.getForgeItemTag(id);
+    public static TagKey<Item> getTag(String id){
+        return TagUtils.getForgelikeItemTag(id);
     }
 }

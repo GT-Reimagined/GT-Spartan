@@ -5,22 +5,15 @@ import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.material.MaterialItem;
 import muramasa.antimatter.material.MaterialType;
-import muramasa.antimatter.texture.Texture;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ModelFile;
-import trinsdar.gtsp.Ref;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
 
-import static trinsdar.gtsp.data.Materials.POLE;
+import static trinsdar.gtsp.data.MaterialTypes.POLE;
+
 
 public class MaterialItemToolPart extends MaterialItem implements IMaterialItemSpartan {
     public MaterialItemToolPart(String domain, MaterialType<?> type, Material material, Properties properties) {
         super(domain, type, material, properties);
-    }
-
-    public Texture[] getTextures() {
-        return new Texture[]{new Texture(Ref.ID, "material/" + type.getId()), new Texture(Ref.ID, "material/" + type.getId() + "_overlay")};
     }
 
     @Override
@@ -32,9 +25,9 @@ public class MaterialItemToolPart extends MaterialItem implements IMaterialItemS
     }
 
     @Override
-    public void onItemModelBuild(IItemProvider item, AntimatterItemModelProvider prov) {
-        ItemModelBuilder builder = prov.getBuilder(item);
-        builder.parent(new ModelFile.UncheckedModelFile(new ResourceLocation(this.getParent())));
+    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+        var builder = prov.getAntimatterBuilder(item);
+        builder.parent(new ResourceLocation(getParent()));
         for (int i = 0; i < getTextures().length; i++) {
             builder.texture("layer" + i, getTextures()[i]);
         }

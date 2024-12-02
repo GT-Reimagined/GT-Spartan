@@ -14,27 +14,13 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.ToolType;
-import trinsdar.gtsp.Ref;
-import trinsdar.gtsp.tool.GTSPToolType;
-import trinsdar.gtsp.tool.GTSPWeaponMaterial;
-
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Set;
 
+/*
 public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntimatterTool, IMaterialItemSpartan {
     GTSPToolType type;
     String domain;
@@ -135,3 +121,4 @@ public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IAntim
         return getMaterial(stack).getMaxUses();
     }
 }
+*/

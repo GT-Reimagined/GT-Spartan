@@ -71,11 +71,11 @@ dependencies {
 
     implementation 'org.apache.commons:commons-collections4:4.4'
 
-    runtimeOnly fg.deobf("curse.maven:world_stripper-250603:${world_stripper_file}")
-    runtimeOnly fg.deobf("curse.maven:world_edit-225608:${world_edit_file}")
+    //runtimeOnly fg.deobf("curse.maven:world_stripper-250603:${world_stripper_file}")
+    //runtimeOnly fg.deobf("curse.maven:world_edit-225608:${world_edit_file}")
     implementation fg.deobf("curse.maven:spartan_weaponry-278141:${spartan_weaponry_file}")
     runtimeOnly fg.deobf("curse.maven:top-245211:${top_file}")
-    runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
+    //runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
 
     implementation fg.deobf("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
     implementation fg.deobf("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"){
@@ -88,23 +88,11 @@ dependencies {
     implementation fg.deobf("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
 
+processResources {
+    inputs.property "version", project.mod_version
 
-// Example configuration to allow publishing using the maven-publish task
-// This is the preferred method to reobfuscate your jar file
-//jar.finalizedBy('reobfJar')
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
-//publish.dependsOn('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.mod_version
     }
 }
 

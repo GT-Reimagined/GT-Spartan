@@ -14,29 +14,18 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.texture.Texture;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.ToolType;
-import trinsdar.gtsp.Ref;
-import trinsdar.gtsp.data.Tools;
-import trinsdar.gtsp.tool.GTSPToolType;
-import trinsdar.gtsp.tool.GTSPWeaponMaterial;
 
 import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Set;
 
-public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, IMaterialItemSpartan {
+/*public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, IMaterialItemSpartan {
     GTSPToolType type;
     String domain;
     public MaterialSwordSp(String domain, GTSPToolType type, Properties prop) {
@@ -131,7 +120,7 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
 
 
 
-    /*@Override
+    *//*@Override
     public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         boolean isShiftPressed = Screen.hasShiftDown();
         if (this.getMaterial(stack).hasAnyWeaponTrait()) {
@@ -141,9 +130,9 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
             }
         }
         super.addInformation(stack, worldIn, tooltip, flagIn);
-    }*/
+    }*//*
 
-    /*@Override
+    *//*@Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         IMeleeTraitCallback callback;
         for (WeaponTrait trait : this.getMaterial(stack).getAllWeaponTraits()){
@@ -153,7 +142,7 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
             }
         }
         return super.hitEntity(stack, target, attacker);
-    }*/
+    }*//*
 
     public WeaponMaterial getMaterial(ItemStack stack) {
         return GTSPWeaponMaterial.getOrCreate(this.getPrimaryMaterial(stack), this.getSecondaryMaterial(stack));
@@ -163,4 +152,4 @@ public class MaterialSwordSp extends SwordBaseItem implements IAntimatterTool, I
     public int getMaxDamage(ItemStack stack) {
         return getMaterial(stack).getMaxUses();
     }
-}
+}*/

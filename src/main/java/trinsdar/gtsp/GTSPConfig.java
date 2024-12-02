@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GTSPConfig {
 
     public static final Data DATA = new Data();
@@ -24,11 +24,11 @@ public class GTSPConfig {
 
     }
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public static void onModConfigEvent(final ModConfig.ModConfigEvent e) {
-        if (e.getConfig().getSpec() == COMMON_SPEC) bakeCommonConfig();
+        //if (e.getConfig().getSpec() == COMMON_SPEC) bakeCommonConfig();
 
-    }
+    }*/
 
     public static class Data {
 

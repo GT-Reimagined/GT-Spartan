@@ -1,26 +1,12 @@
 package trinsdar.gtsp;
 
-import com.oblivioussp.spartanweaponry.item.HeavyCrossbowItem;
-import com.oblivioussp.spartanweaponry.item.LongbowItem;
-import muramasa.antimatter.Antimatter;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.AntimatterDynamics;
 import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.Data;
-import muramasa.antimatter.datagen.ExistingFileHelperOverride;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
-import muramasa.antimatter.event.AntimatterCraftingEvent;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.registration.RegistrationEvent;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
+import muramasa.antimatter.registration.Side;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -29,19 +15,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
-import trinsdar.gtsp.datagen.GTSPItemTagProvider;
-import trinsdar.gtsp.loader.crafting.MaterialCrafting;
-import trinsdar.gtsp.loader.crafting.ToolCrafting;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
-
-import static trinsdar.gtsp.data.Materials.HANDLE;
-import static trinsdar.gtsp.data.Materials.POLE;
 
 
 @Mod(Ref.ID)
@@ -65,7 +44,7 @@ public class GTSpartan extends AntimatterMod {
         //if (ModList.get().isLoaded(Ref.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
 
-        AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
+        /*AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
         AntimatterDynamics.addProvider(Ref.ID, g -> {
             p[0] = new AntimatterBlockTagProvider(Ref.ID, Ref.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
             return p[0];
@@ -74,10 +53,10 @@ public class GTSpartan extends AntimatterMod {
         AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterLanguageProvider(Ref.ID, Ref.NAME + " en_us Localization", "en_us", g));
 
         AntimatterAPI.addRegistrar(new SpartanRegistrar());
-        MinecraftForge.EVENT_BUS.addListener(GTSpartan::registerCraftingLoaders);
+        MinecraftForge.EVENT_BUS.addListener(GTSpartan::registerCraftingLoaders);*/
     }
 
-    private static void registerCraftingLoaders(AntimatterCraftingEvent event){
+    /*private static void registerCraftingLoaders(AntimatterCraftingEvent event){
         event.addLoader(ToolCrafting::loadRecipes);
         event.addLoader(MaterialCrafting::loadRecipes);
     }
@@ -94,7 +73,7 @@ public class GTSpartan extends AntimatterMod {
                 }
             }
         }
-    }
+    }*/
 
     private void clientSetup(final FMLClientSetupEvent e) {
         ClientHandler.setup(e);
@@ -110,17 +89,17 @@ public class GTSpartan extends AntimatterMod {
     }
 
     @Override
-    public void onRegistrationEvent(RegistrationEvent event, Dist side) {
+    public void onRegistrationEvent(RegistrationEvent event, Side side) {
         if (event == RegistrationEvent.DATA_INIT) {
             Tools.init();
         }
         if (event == RegistrationEvent.DATA_READY){
             Material wood = Material.get("wood");
-            if (wood != Data.NULL){
+            /*if (wood != Data.NULL){
                 Antimatter.LOGGER.info("Overriding wood");
                 HANDLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "handle")));
                 POLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "pole")));
-            }
+            }*/
         }
     }
 

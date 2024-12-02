@@ -5,8 +5,7 @@ import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.recipe.ingredient.PropertyIngredient;
 import muramasa.antimatter.tool.AntimatterToolType;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.recipes.FinishedRecipe;
 import trinsdar.gtsp.Ref;
 import trinsdar.gtsp.data.Materials;
 
@@ -14,21 +13,20 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.Data.*;
-import static muramasa.antimatter.material.MaterialTag.HANDLE;
-import static muramasa.antimatter.recipe.RecipeBuilders.TOOL_BUILDER;
+import static muramasa.antimatter.data.AntimatterMaterialTypes.GEM;
+import static muramasa.antimatter.material.Material.NULL;
 import static trinsdar.gtsp.data.Tools.*;
 
 public class ToolCrafting {
-    public static void loadRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
+    public static void loadRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
         loadStandardToolRecipes(output, provider);
         if (Material.get("flint") != NULL && Material.get("flint").has(GEM)){
             loadFlintToolRecipes(output, provider);
         }
     }
 
-    private static void loadStandardToolRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
-        ICriterionInstance in = provider.hasSafeItem(FILE.getTag());
+    private static void loadStandardToolRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
+        /*ICriterionInstance in = provider.hasSafeItem(FILE.getTag());
 
         Function<AntimatterToolType, ImmutableMap<Character, Object>> map2 = type -> of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").types(PLATE, GEM).tags(TOOLS).build(), 'F', FILE.getTag(), 'H', HAMMER.getTag());
 
@@ -74,11 +72,11 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(GLAIVE.getId()), output, Ref.ID, GLAIVE.getId() + "_with" , "gtsp_weapons",
                 "has_wrench", in, GLAIVE.getToolStack(NULL, NULL), map1.apply(GLAIVE), " P ", "FPH", " R ");
         provider.addToolRecipe(TOOL_BUILDER.get(QUARTERSTAFF.getId()), output, Ref.ID, QUARTERSTAFF.getId() + "_with" , "gtsp_weapons",
-                "has_wrench", in, QUARTERSTAFF.getToolStack(NULL, NULL), map1.apply(QUARTERSTAFF), "FRH", " P ");
+                "has_wrench", in, QUARTERSTAFF.getToolStack(NULL, NULL), map1.apply(QUARTERSTAFF), "FRH", " P ");*/
     }
 
-    private static void loadFlintToolRecipes(Consumer<IFinishedRecipe> output, AntimatterRecipeProvider provider){
-        Material flint = Material.get("flint");
+    private static void loadFlintToolRecipes(Consumer<FinishedRecipe> output, AntimatterRecipeProvider provider){
+        /*Material flint = Material.get("flint");
         ICriterionInstance in = provider.hasSafeItem(GEM.get(flint));
 
         ImmutableMap<Character, Object> map2 = of('R', PropertyIngredient.builder("secondary").types(Materials.HANDLE).build(), 'P', PropertyIngredient.builder("primary").mats(flint).types(GEM).build());
@@ -125,6 +123,6 @@ public class ToolCrafting {
         provider.addToolRecipe(TOOL_BUILDER.get(GLAIVE.getId()), output, Ref.ID, GLAIVE.getId() + "_flint" , "gtsp_weapons",
                 "has_wrench", in, GLAIVE.getToolStack(flint, NULL), map1, "P", "P", "R");
         provider.addToolRecipe(TOOL_BUILDER.get(QUARTERSTAFF.getId()), output, Ref.ID, QUARTERSTAFF.getId() + "_flint" , "gtsp_weapons",
-                "has_wrench", in, QUARTERSTAFF.getToolStack(flint, NULL), map1, "R", "P");
+                "has_wrench", in, QUARTERSTAFF.getToolStack(flint, NULL), map1, "R", "P");*/
     }
 }

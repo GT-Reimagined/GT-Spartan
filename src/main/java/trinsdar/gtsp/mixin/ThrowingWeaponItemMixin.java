@@ -1,22 +1,15 @@
 package trinsdar.gtsp.mixin;
 
-import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import org.objectweb.asm.Opcodes;
+import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
-import trinsdar.gtsp.items.MaterialThrowingWeapon;
 
 @Mixin(ThrowingWeaponItem.class)
 public abstract class ThrowingWeaponItemMixin extends Item {
-    @Shadow
+    public ThrowingWeaponItemMixin(Properties pProperties) {
+        super(pProperties);
+    }
+    /*@Shadow
     protected WeaponMaterial material;
 
     @Shadow
@@ -48,5 +41,5 @@ public abstract class ThrowingWeaponItemMixin extends Item {
             return ((MaterialThrowingWeapon)item).getAntimatterToolType().getBaseAttackDamage() + ((MaterialThrowingWeapon)item).getTier(stack).getAttackDamageBonus();
         }
         return attackDamage;
-    }
+    }*/
 }
