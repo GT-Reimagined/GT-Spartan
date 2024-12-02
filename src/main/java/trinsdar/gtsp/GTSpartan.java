@@ -23,12 +23,12 @@ import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
 
 
-@Mod(Ref.ID)
+@Mod(GTSPRef.ID)
 public class GTSpartan extends AntimatterMod {
 
     public static GTSpartan INSTANCE;
     public static IProxyHandler PROXY;
-    public static Logger LOGGER = LogManager.getLogger(Ref.ID);
+    public static Logger LOGGER = LogManager.getLogger(GTSPRef.ID);
 
     public GTSpartan() {
         super();
@@ -41,16 +41,16 @@ public class GTSpartan extends AntimatterMod {
         MinecraftForge.EVENT_BUS.register(this);
         //GregTechAPI.addRegistrar(new ForestryRegistrar());
         //GregTechAPI.addRegistrar(new GalacticraftRegistrar());
-        //if (ModList.get().isLoaded(Ref.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
+        //if (ModList.get().isLoaded(GTSPRef.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
 
-        /*AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterItemModelProvider(Ref.ID, Ref.NAME + " Item Models", g));
-        AntimatterDynamics.addProvider(Ref.ID, g -> {
-            p[0] = new AntimatterBlockTagProvider(Ref.ID, Ref.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
+        /*AntimatterDynamics.addProvider(GTSPRef.ID, g -> new AntimatterItemModelProvider(GTSPRef.ID, GTSPRef.NAME + " Item Models", g));
+        AntimatterDynamics.addProvider(GTSPRef.ID, g -> {
+            p[0] = new AntimatterBlockTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
             return p[0];
         });
-        AntimatterDynamics.addProvider(Ref.ID, g -> new GTSPItemTagProvider(Ref.ID, Ref.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
-        AntimatterDynamics.addProvider(Ref.ID, g -> new AntimatterLanguageProvider(Ref.ID, Ref.NAME + " en_us Localization", "en_us", g));
+        AntimatterDynamics.addProvider(GTSPRef.ID, g -> new GTSPItemTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
+        AntimatterDynamics.addProvider(GTSPRef.ID, g -> new AntimatterLanguageProvider(GTSPRef.ID, GTSPRef.NAME + " en_us Localization", "en_us", g));
 
         AntimatterAPI.addRegistrar(new SpartanRegistrar());
         MinecraftForge.EVENT_BUS.addListener(GTSpartan::registerCraftingLoaders);*/
@@ -97,8 +97,8 @@ public class GTSpartan extends AntimatterMod {
             Material wood = Material.get("wood");
             /*if (wood != Data.NULL){
                 Antimatter.LOGGER.info("Overriding wood");
-                HANDLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "handle")));
-                POLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(Ref.MOD_SPARTAN_WEAPONRY, "pole")));
+                HANDLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(GTSPRef.MOD_SPARTAN_WEAPONRY, "handle")));
+                POLE.forceOverride(wood, ForgeRegistries.ITEMS.getValue(new ResourceLocation(GTSPRef.MOD_SPARTAN_WEAPONRY, "pole")));
             }*/
         }
     }
@@ -109,6 +109,6 @@ public class GTSpartan extends AntimatterMod {
 
     @Override
     public String getId() {
-        return Ref.ID;
+        return GTSPRef.ID;
     }
 }

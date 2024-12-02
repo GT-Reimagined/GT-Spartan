@@ -1,31 +1,30 @@
 package trinsdar.gtsp.tool;
 
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
+import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.material.Material;
+import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
 import muramasa.antimatter.util.Utils;
+import net.minecraft.world.item.Item.Properties;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 import java.util.function.Supplier;
 
 public class GTSPToolType  extends AntimatterToolType {
-    RegistryObject<WeaponTrait>[] weaponTraits;
 
-    @SafeVarargs
-    public GTSPToolType(String domain, String id, int useDurability, int attackDurability, int craftingDurability, float baseAttackDamage, float baseAttackSpeed, RegistryObject<WeaponTrait>... weaponTraits) {
+    private final WeaponArchetype archetype;
+
+    public GTSPToolType(String domain, String id, int useDurability, int attackDurability, int craftingDurability, float baseAttackDamage, float baseAttackSpeed, WeaponArchetype archetype) {
         super(domain, id, useDurability, attackDurability, craftingDurability, baseAttackDamage, baseAttackSpeed, false);
-        this.weaponTraits = weaponTraits;
+        this.archetype = archetype;
         if (!id.equals("boomerang")) {
             this.setOverlayLayers(2);
         }
     }
-
-    /*public WeaponTrait[] getWeaponTraits() {
-        return weaponTraits;
-    }*/
 
     /*@Override
     public IAntimatterTool instantiateTools(String domain) {

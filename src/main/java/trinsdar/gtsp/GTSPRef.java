@@ -1,6 +1,6 @@
 package trinsdar.gtsp;
 
-public class Ref {
+public class GTSPRef {
 
     /** Mod Data **/
     public static final String ID = "gtsp";

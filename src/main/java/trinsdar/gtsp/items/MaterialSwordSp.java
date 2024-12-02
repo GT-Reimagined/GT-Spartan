@@ -71,7 +71,7 @@ import java.util.Set;
             for (int i = 0; i < textures.length; i++) {
                 builder.texture("layer" + i, textures[i]);
             }
-            prov.tex(item, getParent(), getTextures()).override().predicate(new ResourceLocation("throwing"), 1).model(new ModelFile.UncheckedModelFile(new ResourceLocation(Ref.ID, "item/" + id +"_throwing")));
+            prov.tex(item, getParent(), getTextures()).override().predicate(new ResourceLocation("throwing"), 1).model(new ModelFile.UncheckedModelFile(new ResourceLocation(GTSPRef.ID, "item/" + id +"_throwing")));
             return;
         }
         prov.tex(item, getParent(), getTextures());
