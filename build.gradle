@@ -1,5 +1,5 @@
 plugins {
-    id "net.neoforged.moddev.legacyforge" version "2.0.52-beta"
+    id "net.neoforged.moddev.legacyforge" version "2.0.55-beta"
     id "java"
 }
 
@@ -47,9 +47,7 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
 
     modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
-    modImplementation("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"){
-        exclude(group: "maven.modrinth")
-    }
+    modImplementation("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}")
 
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
