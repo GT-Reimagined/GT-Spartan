@@ -4,9 +4,11 @@ import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
 import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
+import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.tool.AntimatterToolType;
 import net.minecraft.world.level.block.Blocks;
 import trinsdar.gtsp.GTSPRef;
+import trinsdar.gtsp.items.MaterialSwordSpartan;
 import trinsdar.gtsp.tool.GTSPToolType;
 
 
@@ -42,6 +44,9 @@ public class Tools {
 
     public static void init(){
         //BATTLEAXE.addBehaviour(BehaviourLogStripping.INSTANCE, BehaviourTreeFelling.INSTANCE);
-        AntimatterDefaultTools.SCYTHE.setOverlayLayers(2);
+        AntimatterDefaultTools.SCYTHE.setOverlayLayers(2).setToolSupplier((domain2, toolType, tier, properties) -> {
+            if (tier.getPrimary() == AntimatterMaterials.NetherizedDiamond) properties.fireResistant();
+            return new MaterialSwordSpartan(domain2, toolType, tier, properties, WeaponArchetype.SCYTHE, 5.0f, 1.0f, 1.0f);
+        });
     }
 }
