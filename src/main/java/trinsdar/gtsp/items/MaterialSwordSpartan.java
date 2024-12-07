@@ -149,7 +149,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
                 builder.texture("layer" + i, textures[i]);
             }
             builder.texture("coating", new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "item/coating/" + type.getId()));
-            builder.property("loader", "spartanweaponry:oil_coated_item");
+            builder.loader(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "oil_coated_item"));
             if (builderString.isEmpty()){
                 builder.override().predicate(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "blocking"), 1.0f).model(new ResourceLocation(getDomain(), "item/" + this.getId() + "_blocking")).end();
                 builder.override().predicate(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "throwing"), 1.0f).model(new ResourceLocation(getDomain(), "item/" + this.getId() + "_throwing")).end();
