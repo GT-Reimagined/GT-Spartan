@@ -40,6 +40,7 @@ import net.minecraftforge.common.Tags.Items;
 import org.jetbrains.annotations.Nullable;
 import tesseract.api.context.TesseractItemContext;
 import tesseract.api.gt.IEnergyHandlerItem;
+import trinsdar.gtsp.GTSPRef;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -155,5 +156,10 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
                 builder.override().predicate(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "throwing"), 1.0f).model(new ResourceLocation(getDomain(), "item/" + this.getId() + "_throwing")).end();
             }
         }
+    }
+
+    @Override
+    public String getTextureDomain() {
+        return GTSPRef.ID;
     }
 }
