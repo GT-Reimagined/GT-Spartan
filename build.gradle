@@ -65,6 +65,7 @@ processResources {
 
 mixin {
     add sourceSets.main, "gtsp.refmap.json"
+    config("gtsp.mixins.json")
 }
 
 jar {

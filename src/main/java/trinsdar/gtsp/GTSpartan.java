@@ -1,7 +1,11 @@
 package trinsdar.gtsp;
 
+import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
+import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
+import muramasa.antimatter.event.ProvidersEvent;
+import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.registration.RegistrationEvent;
@@ -18,6 +22,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
+import trinsdar.gtsp.datagen.GTSPItemTagProvider;
+import trinsdar.gtsp.datagen.GTSPWeaponTraitTagProvider;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
@@ -37,43 +43,27 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProviders);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GTSPConfig.COMMON_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
-        //GregTechAPI.addRegistrar(new ForestryRegistrar());
-        //GregTechAPI.addRegistrar(new GalacticraftRegistrar());
-        //if (ModList.get().isLoaded(GTSPRef.MOD_UB)) GregTechAPI.addRegistrar(new UndergroundBiomesRegistrar());
-        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
-
-        /*AntimatterDynamics.addProvider(GTSPRef.ID, g -> new AntimatterItemModelProvider(GTSPRef.ID, GTSPRef.NAME + " Item Models", g));
-        AntimatterDynamics.addProvider(GTSPRef.ID, g -> {
-            p[0] = new AntimatterBlockTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Block Tags"), false, g, new ExistingFileHelperOverride());
-            return p[0];
-        });
-        AntimatterDynamics.addProvider(GTSPRef.ID, g -> new GTSPItemTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Item Tags"), false, g, p[0], new ExistingFileHelperOverride()));
-        AntimatterDynamics.addProvider(GTSPRef.ID, g -> new AntimatterLanguageProvider(GTSPRef.ID, GTSPRef.NAME + " en_us Localization", "en_us", g));
-
-        AntimatterAPI.addRegistrar(new SpartanRegistrar());
-        MinecraftForge.EVENT_BUS.addListener(GTSpartan::registerCraftingLoaders);*/
+        new SpartanRegistrar();
     }
 
     /*private static void registerCraftingLoaders(AntimatterCraftingEvent event){
         event.addLoader(ToolCrafting::loadRecipes);
         event.addLoader(MaterialCrafting::loadRecipes);
     }
+    */
 
-    //@SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent event){
-        if (event.phase == TickEvent.Phase.END){
-            PlayerEntity player = event.player;
-            ItemStack stack = player.getHeldItemMainhand();
-            if (stack.getItem() instanceof LongbowItem || stack.getItem() instanceof HeavyCrossbowItem){
-                if (stack.hasTag()){
-                    //noinspection ConstantConditions
-                    Antimatter.LOGGER.info(stack.getTag().toString());
-                }
-            }
-        }
-    }*/
+    private void onProviders(AntimatterProvidersEvent ev){
+        ev.addProvider(GTSPRef.ID, () -> new GTSPWeaponTraitTagProvider(GTSPRef.ID, GTSPRef.NAME + " Weapon Trait Tags"));
+        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
+        ev.addProvider(GTSPRef.ID, () -> {
+            p[0] = new AntimatterBlockTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Block Tags"), false);
+            return p[0];
+        });
+        ev.addProvider(GTSPRef.ID, () -> new GTSPItemTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Item Tags"), false, p[0]));
+    }
 
     private void clientSetup(final FMLClientSetupEvent e) {
         ClientHandler.setup(e);

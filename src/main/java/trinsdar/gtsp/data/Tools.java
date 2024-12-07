@@ -1,21 +1,24 @@
 package trinsdar.gtsp.data;
 
+import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
 import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.tool.AntimatterToolType;
 import trinsdar.gtsp.GTSPRef;
+import trinsdar.gtsp.tool.GTSPToolType;
 
 
 public class Tools {
 
-    public static AntimatterToolType DAGGER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "dagger", 2, 1, 10, 1.5f, -1.5f, false));
-    public static AntimatterToolType PARRYING_DAGGER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "parrying_dagger", 2, 1, 10, 1.5f, -1.5f, false));
-    public static AntimatterToolType LONGSWORD = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "longsword", 2, 1, 10, 4.5f, -2.6f, false));
-    public static AntimatterToolType KATANA = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "katana", 2, 1, 10, 1.5f, -2.0f, false));
-    public static AntimatterToolType SABER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "saber", 2, 1, 10, 0.0f, -1.6f, false));
-    public static AntimatterToolType RAPIER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "rapier", 2, 1, 10, 1.5f, -1.5f, false));
-    public static AntimatterToolType GREATSWORD = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "greatsword", 2, 1, 10, 4.0f, -2.6f, false));
-    public static AntimatterToolType BATTLE_HAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "battle_hammer", 2, 1, 10, 6.0f, -3.2f, false));
-    public static AntimatterToolType WARHAMMER = AntimatterAPI.register(AntimatterToolType.class, new AntimatterToolType(GTSPRef.ID, "warhammer", 2, 1, 10, 4.0f, -2.9f, false));
+    public static AntimatterToolType DAGGER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "dagger", 2.5f, 1.0f, -1.5f, WeaponArchetype.DAGGER));
+    public static AntimatterToolType PARRYING_DAGGER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "parrying_dagger", 2.5f, 1.0f, -1.5f, WeaponArchetype.PARRYING_DAGGER));
+    public static AntimatterToolType LONGSWORD = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "longsword", 4.5f, 1.5f, -2.6f, WeaponArchetype.LONGSWORD));
+    public static AntimatterToolType KATANA = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "katana", 3.5f, 0.5f, -2.0f, WeaponArchetype.KATANA));
+    public static AntimatterToolType SABER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "saber", 3.5f, 0.5f, -1.6f, WeaponArchetype.SABER));
+    public static AntimatterToolType RAPIER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "rapier", 2.0f, 0.5f, -1.5f, WeaponArchetype.RAPIER));
+    public static AntimatterToolType GREATSWORD = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "greatsword", 4.0f, 1.5f, -2.6f, WeaponArchetype.GREATSWORD));
+    public static AntimatterToolType BATTLE_HAMMER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "battle_hammer", 5.0f, 2.0f, -3.2f, WeaponArchetype.BATTLE_HAMMER));
+    public static AntimatterToolType WARHAMMER = AntimatterAPI.register(AntimatterToolType.class, new GTSPToolType(GTSPRef.ID, "warhammer", 4.0f, 1.5f, -2.9f, WeaponArchetype.WARHAMMER));
     /*public static AntimatterToolType DAGGER = new GTSPToolType(GTSPRef.ID, "dagger", 2, 1, 10, 1.5F, -1.5F, WeaponTraits.THROWABLE).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType LONGSWORD = new GTSPToolType(GTSPRef.ID, "longsword", 2, 1, 10, 4.5F, -2.6F, WeaponTraits.TWO_HANDED_1, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
     public static AntimatterToolType KATANA = new GTSPToolType(GTSPRef.ID, "katana", 2, 1, 10, 1.5F, -2.0F, WeaponTraits.TWO_HANDED_1, WeaponTraits.EXTRA_DAMAGE_2_CHEST, WeaponTraits.SWEEP_DAMAGE_NORMAL).setToolClass(MaterialSwordSp.class).addEffectiveBlocks(Blocks.COBWEB).addToolTypes("sword");
@@ -48,5 +51,6 @@ public class Tools {
 
     public static void init(){
         //BATTLEAXE.addBehaviour(BehaviourLogStripping.INSTANCE, BehaviourTreeFelling.INSTANCE);
+        AntimatterDefaultTools.SCYTHE.setOverlayLayers(2);
     }
 }

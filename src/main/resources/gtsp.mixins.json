@@ -4,12 +4,10 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "gtsp.refmap.json",
   "mixins": [
-    "ThrowingWeaponEntityMixin",
-    "SwordBaseItemMixin",
+    "OilCoatingColoursMixin",
     "ThrowingWeaponItemMixin"
   ],
   "client": [
-    "SwordBaseItemClientMixin",
     "ThrowingWeaponItemClientMixin"
   ],
   "minVersion": "0.8"

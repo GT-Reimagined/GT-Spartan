@@ -1,24 +1,39 @@
 package trinsdar.gtsp.items;
 
+import com.google.common.collect.Multimap;
+import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
+import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.api.tags.ModWeaponTraitTags;
+import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
+import muramasa.antimatter.AntimatterAPI;
+import muramasa.antimatter.data.AntimatterMaterials;
+import muramasa.antimatter.datagen.builder.AntimatterItemModelBuilder;
+import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
+import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags.Items;
@@ -38,16 +53,22 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     private final AntimatterToolType type;
     private final AntimatterItemTier tier;
 
-    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn) {
-        super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), ModWeaponTraitTags.create(type.getId())), archetypeIn, type.getBaseAttackDamage(), 1, type.getBaseAttackSpeed());
+    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float weaponDamageMultiplier) {
+        super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), materialTag(tier.getPrimary())), archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4);
         this.domain = domain;
         this.type = type;
         this.tier = tier;
+        AntimatterAPI.register(IAntimatterTool.class, this);
     }
 
     @Override
     public String getDomain() {
         return domain;
+    }
+
+    public static TagKey<WeaponTrait> materialTag(Material material) {
+        if (material == AntimatterMaterials.NetherizedDiamond) material = AntimatterMaterials.Netherite;
+        return ModWeaponTraitTags.create("materials/" + material.getId());
     }
 
     public static TagKey<Item> repairTag(Material material){
@@ -115,5 +136,24 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
         InteractionResult result = onGenericItemUse(contextIn);
         if (result != InteractionResult.PASS) return result;
         return super.useOn(contextIn);
+    }
+
+    @Override
+    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+        String[] builders = {"", "_throwing", "_blocking"};
+        for (String builderString : builders) {
+            AntimatterItemModelBuilder builder = prov.getBuilder(this.getId() + builderString);
+            builder.parent(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "item/base/" + type.getId() + builderString));
+            var textures = getTextures();
+            for (int i = 0; i < textures.length; i++) {
+                builder.texture("layer" + i, textures[i]);
+            }
+            builder.texture("coating", new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "item/coating/" + type.getId()));
+            builder.property("loader", "spartanweaponry:oil_coated_item");
+            if (builderString.isEmpty()){
+                builder.override().predicate(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "blocking"), 1.0f).model(new ResourceLocation(getDomain(), "item/" + this.getId() + "_blocking")).end();
+                builder.override().predicate(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "throwing"), 1.0f).model(new ResourceLocation(getDomain(), "item/" + this.getId() + "_throwing")).end();
+            }
+        }
     }
 }
