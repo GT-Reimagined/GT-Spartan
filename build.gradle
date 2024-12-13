@@ -46,8 +46,8 @@ dependencies {
     modRuntimeOnly("curse.maven:top-245211:${top_file}")
     //runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
 
-    modImplementation("io.github.gregtechintergalactical:antimatter-forge:${antimatter_version}")
-    modImplementation("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}")
+    modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
+    modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
 
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
