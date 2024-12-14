@@ -6,6 +6,8 @@ import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.data.AntimatterDefaultTools;
 import muramasa.antimatter.data.AntimatterMaterials;
 import muramasa.antimatter.tool.AntimatterToolType;
+import muramasa.antimatter.tool.behaviour.BehaviourLogStripping;
+import muramasa.antimatter.tool.behaviour.BehaviourTreeFelling;
 import net.minecraft.world.level.block.Blocks;
 import trinsdar.gtsp.GTSPRef;
 import trinsdar.gtsp.items.MaterialSwordSpartan;
@@ -43,10 +45,10 @@ public class Tools {
 
 
     public static void init(){
-        //BATTLEAXE.addBehaviour(BehaviourLogStripping.INSTANCE, BehaviourTreeFelling.INSTANCE);
+        BATTLEAXE.addBehaviour(BehaviourLogStripping.INSTANCE, BehaviourTreeFelling.INSTANCE);
         AntimatterDefaultTools.SCYTHE.setOverlayLayers(2).setToolSupplier((domain2, toolType, tier, properties) -> {
             if (tier.getPrimary() == AntimatterMaterials.NetherizedDiamond) properties.fireResistant();
-            return new MaterialSwordSpartan(domain2, toolType, tier, properties, WeaponArchetype.SCYTHE, 5.0f, 1.0f, 1.0f);
-        });
+            return new MaterialSwordSpartan(domain2, toolType, tier, properties, WeaponArchetype.SCYTHE, 1.0f);
+        }).setUseDurability(1).setAttackDurability(1).setBaseAttackDamage(5.0f).setBaseAttackSpeed(-3.0f);
     }
 }
