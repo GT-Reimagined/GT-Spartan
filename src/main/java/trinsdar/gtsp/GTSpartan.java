@@ -56,7 +56,8 @@ public class GTSpartan extends AntimatterMod {
 
     public void registerCraftingLoaders(AntimatterCraftingEvent event){
         event.addLoader(ToolCrafting::loadStandardToolRecipes);
-        //event.addLoader(MaterialCrafting::loadRecipes);
+        event.addLoader(ToolCrafting::removeSpartanWeaponryRecipes);
+        event.addLoader(MaterialCrafting::loadRecipes);
     }
 
     private void onProviders(AntimatterProvidersEvent ev){

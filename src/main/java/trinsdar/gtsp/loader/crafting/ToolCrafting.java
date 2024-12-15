@@ -12,8 +12,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.codehaus.plexus.util.dag.DAG;
+import trinsdar.gtsp.GTSPConfig;
 import trinsdar.gtsp.GTSPRef;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
@@ -31,6 +34,33 @@ import static trinsdar.gtsp.data.Tools.*;
 import static trinsdar.gtsp.data.Tools.LONGSWORD;
 
 public class ToolCrafting {
+
+    public static void removeSpartanWeaponryRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+        if (GTSPConfig.REMOVE_MODDED_WEAPONS.get()){
+            List<String> materials = new ArrayList<>();
+            for (String material : GTSPConfig.HIDDEN_MODDED_TOOL_MATERIALS.get()){
+                if (GTSPConfig.DEFAULT_MODDED_TOOL_MATERIALS.contains(material)){
+                    materials.add(material);
+                }
+            }
+            if (GTSPConfig.REMOVE_WOODEN_WEAPONS.get()){
+                materials.add("wooden");
+            }
+            List<String> tools = List.of("dagger", "parrying_dagger", "longsword", "katana",
+                    "saber", "rapier", "greatsword", "battle_hammer", "warhammer", "spear", "halberd", "pike", "lance",
+                    "longbow", "heavy_crossbow", "throwing_knife", "tomahawk", "javelin", "boomerang", "battleaxe", "flanged_mace", "glaive",
+                    "quarterstaff", "scythe");
+            for (String material : materials) {
+                for (String tool : tools) {
+                    if (material.equals("wooden") && (tool.equals("longbow") || tool.equals("heavy_crossbow"))){
+                        continue;
+                    }
+                    provider.removeRecipe(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, material + "_" + tool));
+                }
+            }
+
+        }
+    }
 
     public static void loadStandardToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         TOOLS.getAll().forEach((m, t) -> {
