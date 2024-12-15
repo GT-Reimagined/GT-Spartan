@@ -48,6 +48,7 @@ dependencies {
 
     modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
     modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
+    modRuntimeOnly("org.gt-reimagined:gtcore-forge:${rootProject.gt_core_version}-${rootProject.minecraft_version}")
 
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
