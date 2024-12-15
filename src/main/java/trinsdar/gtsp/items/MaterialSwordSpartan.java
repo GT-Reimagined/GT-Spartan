@@ -57,11 +57,11 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     private final boolean replacement;
 
     public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float weaponDamageMultiplier) {
-        this(domain, type, tier, properties, archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4, false);
+        this(domain, type, tier, properties, archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4, false, "item.spartanweaponry.custom_" + type.getId());
     }
 
-    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed, boolean replacement) {
-        super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), materialTag(tier.getPrimary())), archetypeIn, baseAttackDamage, weaponDamageMultiplier, baseAttackSpeed);
+    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed, boolean replacement, String customDisplayName) {
+        super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), materialTag(tier.getPrimary())), archetypeIn, baseAttackDamage, weaponDamageMultiplier, baseAttackSpeed, customDisplayName);
         this.domain = domain;
         this.type = type;
         this.tier = tier;

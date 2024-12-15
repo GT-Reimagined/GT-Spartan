@@ -5,10 +5,8 @@
   "refmap": "gtsp.refmap.json",
   "mixins": [
     "OilCoatingColoursMixin",
-    "ThrowingWeaponItemMixin"
-  ],
-  "client": [
-    "ThrowingWeaponItemClientMixin"
+    "WeaponArchetypeAccessor",
+    "WeaponFactoryMixin"
   ],
   "minVersion": "0.8"
 }
