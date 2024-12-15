@@ -64,13 +64,13 @@ public class ToolCrafting {
 
     public static void loadStandardToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
         TOOLS.getAll().forEach((m, t) -> {
-            TagKey<Item> handleAny = t.handleMaterial().has(HANDLE) ? HANDLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "handles"));
-            TagKey<Item> poleAny = t.handleMaterial().has(POLE) ? POLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "poles"));
-            Object handle = t.handleMaterial().has(HANDLE) ? HANDLE.getMaterialTag(t.handleMaterial()) : ModItems.HANDLE.get();
-            Object pole = t.handleMaterial().has(POLE) ? POLE.getMaterialTag(t.handleMaterial()) : ModItems.POLE.get();
+            TagKey<Item> handleAny = t.handleMaterial() != Wood && t.handleMaterial().has(HANDLE) ? HANDLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "handles"));
+            TagKey<Item> poleAny = t.handleMaterial() != Wood && t.handleMaterial().has(POLE) ? POLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "poles"));
+            Object handle = t.handleMaterial() != Wood && t.handleMaterial().has(HANDLE) ? HANDLE.getMaterialTag(t.handleMaterial()) : ModItems.HANDLE.get();
+            Object pole = t.handleMaterial() != Wood && t.handleMaterial().has(POLE) ? POLE.getMaterialTag(t.handleMaterial()) : ModItems.POLE.get();
             TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
-            //boolean replaceVanilla = (m != Iron && m != Gold && m != Diamond) || GTCoreConfig.VANILLA_OVERRIDES.get();
-            if (m.has(INGOT) || m.has(GEM)){
+            boolean replaceVanilla = (m != Iron && m != Gold && m != Diamond) || GTSPConfig.OVERRIDE_VANILLA_SPARTAN_RECIPES.get();
+            if ((m.has(INGOT) || m.has(GEM)) && replaceVanilla){
                 TagKey<Item> plateGem = m.has(GEM) ? GEM.getMaterialTag(m) : m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
                 if (t.toolTypes().contains(DAGGER)){
                     if (m.has(GEM)){
