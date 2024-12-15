@@ -51,6 +51,7 @@ dependencies {
 
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    modImplementation("maven.modrinth:carbon-config:${project.carbon_config_forge_version}")
 
     modImplementation("mezz.jei:jei-${rootProject.minecraft_version}-forge:${rootProject.jei_version}")
 }
