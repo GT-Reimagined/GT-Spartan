@@ -1,5 +1,6 @@
 package trinsdar.gtsp;
 
+import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.registration.IAntimatterRegistrar;
 import muramasa.antimatter.registration.RegistrationEvent;
@@ -16,7 +17,7 @@ public class SpartanRegistrar extends AntimatterMod {
 
     @Override
     public String getId() {
-        return GTSPRef.MOD_SPARTAN_WEAPONRY;
+        return SpartanWeaponryAPI.MOD_ID;
     }
 
     public int getPriority() {

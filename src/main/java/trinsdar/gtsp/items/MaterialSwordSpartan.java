@@ -1,9 +1,6 @@
 package trinsdar.gtsp.items;
 
-import com.google.common.collect.Multimap;
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
-import com.oblivioussp.spartanweaponry.api.WeaponMaterial;
-import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.api.tags.ModWeaponTraitTags;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
@@ -16,21 +13,14 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import muramasa.antimatter.tool.IAntimatterTool;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ItemLike;
@@ -41,7 +31,7 @@ import net.minecraftforge.common.Tags.Items;
 import org.jetbrains.annotations.Nullable;
 import tesseract.api.context.TesseractItemContext;
 import tesseract.api.gt.IEnergyHandlerItem;
-import trinsdar.gtsp.GTSPRef;
+import trinsdar.gtsp.GTSpartan;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -169,7 +159,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
 
     @Override
     public String getTextureDomain() {
-        return GTSPRef.ID;
+        return GTSpartan.ID;
     }
 
     @Override

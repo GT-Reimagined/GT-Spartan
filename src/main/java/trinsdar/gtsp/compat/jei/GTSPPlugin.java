@@ -2,8 +2,6 @@ package trinsdar.gtsp.compat.jei;
 
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.api.tags.ModItemTags;
-import com.oblivioussp.spartanweaponry.init.ModItems;
-import com.oblivioussp.spartanweaponry.util.Config;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -15,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 import trinsdar.gtsp.GTSPConfig;
-import trinsdar.gtsp.GTSPRef;
+import trinsdar.gtsp.GTSpartan;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +21,7 @@ import java.util.List;
 
 @JeiPlugin
 public class GTSPPlugin implements IModPlugin {
-    static final ResourceLocation ID = new ResourceLocation(GTSPRef.ID, "jei_plugin");
+    static final ResourceLocation ID = new ResourceLocation(GTSpartan.ID, "jei_plugin");
     @Override
     public ResourceLocation getPluginUid() {
         return ID;

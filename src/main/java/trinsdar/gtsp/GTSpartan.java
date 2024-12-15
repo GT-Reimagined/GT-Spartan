@@ -1,10 +1,7 @@
 package trinsdar.gtsp;
 
-import muramasa.antimatter.AntimatterAPI;
 import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
-import muramasa.antimatter.event.ProvidersEvent;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import muramasa.antimatter.material.Material;
@@ -12,11 +9,8 @@ import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.registration.Side;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
@@ -33,12 +27,15 @@ import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
 
 
-@Mod(GTSPRef.ID)
+@Mod(GTSpartan.ID)
 public class GTSpartan extends AntimatterMod {
 
+    public static final String NAME = "GT Spartan";
     public static GTSpartan INSTANCE;
     public static IProxyHandler PROXY;
-    public static Logger LOGGER = LogManager.getLogger(GTSPRef.ID);
+    /** Mod Data **/
+    public static final String ID = "gtsp";
+    public static Logger LOGGER = LogManager.getLogger(ID);
 
     public GTSpartan() {
         super();
@@ -61,13 +58,13 @@ public class GTSpartan extends AntimatterMod {
     }
 
     private void onProviders(AntimatterProvidersEvent ev){
-        ev.addProvider(GTSPRef.ID, () -> new GTSPWeaponTraitTagProvider(GTSPRef.ID, GTSPRef.NAME + " Weapon Trait Tags"));
+        ev.addProvider(ID, () -> new GTSPWeaponTraitTagProvider(ID, NAME + " Weapon Trait Tags"));
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
-        ev.addProvider(GTSPRef.ID, () -> {
-            p[0] = new AntimatterBlockTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Block Tags"), false);
+        ev.addProvider(ID, () -> {
+            p[0] = new AntimatterBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
         });
-        ev.addProvider(GTSPRef.ID, () -> new GTSPItemTagProvider(GTSPRef.ID, GTSPRef.NAME.concat(" Item Tags"), false, p[0]));
+        ev.addProvider(ID, () -> new GTSPItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
     }
 
     private void clientSetup(final FMLClientSetupEvent e) {
@@ -104,6 +101,6 @@ public class GTSpartan extends AntimatterMod {
 
     @Override
     public String getId() {
-        return GTSPRef.ID;
+        return ID;
     }
 }
