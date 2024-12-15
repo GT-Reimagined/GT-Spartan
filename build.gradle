@@ -4,7 +4,7 @@ plugins {
 }
 
 version = "${mod_version}"
-group = 'dev.trinsdar' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'org.gt-reimagined' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gt-spartan'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
