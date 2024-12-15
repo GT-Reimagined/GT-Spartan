@@ -5,12 +5,14 @@ import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterLanguageProvider;
 import muramasa.antimatter.event.ProvidersEvent;
+import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.registration.RegistrationEvent;
 import muramasa.antimatter.registration.Side;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +26,8 @@ import org.apache.logging.log4j.Logger;
 import trinsdar.gtsp.data.Tools;
 import trinsdar.gtsp.datagen.GTSPItemTagProvider;
 import trinsdar.gtsp.datagen.GTSPWeaponTraitTagProvider;
+import trinsdar.gtsp.loader.crafting.MaterialCrafting;
+import trinsdar.gtsp.loader.crafting.ToolCrafting;
 import trinsdar.gtsp.proxy.ClientHandler;
 import trinsdar.gtsp.proxy.CommonHandler;
 import trinsdar.gtsp.proxy.ServerHandler;
@@ -44,16 +48,16 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProviders);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCraftingLoaders);
         MinecraftForge.EVENT_BUS.register(this);
         new SpartanRegistrar();
         GTSPConfig.createConfig();
     }
 
-    /*private static void registerCraftingLoaders(AntimatterCraftingEvent event){
-        event.addLoader(ToolCrafting::loadRecipes);
-        event.addLoader(MaterialCrafting::loadRecipes);
+    public void registerCraftingLoaders(AntimatterCraftingEvent event){
+        event.addLoader(ToolCrafting::loadStandardToolRecipes);
+        //event.addLoader(MaterialCrafting::loadRecipes);
     }
-    */
 
     private void onProviders(AntimatterProvidersEvent ev){
         ev.addProvider(GTSPRef.ID, () -> new GTSPWeaponTraitTagProvider(GTSPRef.ID, GTSPRef.NAME + " Weapon Trait Tags"));
