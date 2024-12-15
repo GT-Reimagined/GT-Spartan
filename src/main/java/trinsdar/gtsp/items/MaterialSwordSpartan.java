@@ -35,6 +35,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags.Items;
 import org.jetbrains.annotations.Nullable;
@@ -53,17 +54,21 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     @org.jetbrains.annotations.NotNull
     private final AntimatterToolType type;
     private final AntimatterItemTier tier;
+    private final boolean replacement;
 
     public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float weaponDamageMultiplier) {
-        this(domain, type, tier, properties, archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4);
+        this(domain, type, tier, properties, archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4, false);
     }
 
-    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed) {
+    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed, boolean replacement) {
         super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), materialTag(tier.getPrimary())), archetypeIn, baseAttackDamage, weaponDamageMultiplier, baseAttackSpeed);
         this.domain = domain;
         this.type = type;
         this.tier = tier;
-        AntimatterAPI.register(IAntimatterTool.class, this);
+        this.replacement = replacement;
+        if (!replacement) {
+            AntimatterAPI.register(IAntimatterTool.class, this);
+        }
     }
 
     @Override
@@ -165,5 +170,11 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     @Override
     public String getTextureDomain() {
         return GTSPRef.ID;
+    }
+
+    @Override
+    public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
+        if (replacement) return -1;
+        return IAntimatterTool.super.getItemColor(stack, block, i);
     }
 }

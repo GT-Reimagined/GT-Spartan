@@ -44,9 +44,9 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProviders);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, GTSPConfig.COMMON_SPEC);
         MinecraftForge.EVENT_BUS.register(this);
         new SpartanRegistrar();
+        GTSPConfig.createConfig();
     }
 
     /*private static void registerCraftingLoaders(AntimatterCraftingEvent event){
