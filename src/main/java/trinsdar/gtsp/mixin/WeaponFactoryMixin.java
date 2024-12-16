@@ -19,7 +19,6 @@ import trinsdar.gtsp.GTSPConfig;
 import trinsdar.gtsp.GTSpartan;
 import trinsdar.gtsp.items.MaterialSwordSpartan;
 
-@Debug(export = true)
 @Mixin(WeaponFactory.class)
 public class WeaponFactoryMixin {
     @Redirect(method = {"lambda$static$0", "lambda$static$1", "lambda$static$2", "lambda$static$3", "lambda$static$4", "lambda$static$5", "lambda$static$6",
