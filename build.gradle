@@ -3,7 +3,7 @@ plugins {
     id "java"
 }
 
-version = "${mod_version}"
+version = "${mod_version}-${minecraft_version}"
 group = 'org.gt-reimagined' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gt-spartan'
 
