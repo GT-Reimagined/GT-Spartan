@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "trinsdar.gtsp.mixin",
+  "package": "org.gtreimagined.gtspartan.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "gtspartan.refmap.json",
   "mixins": [
