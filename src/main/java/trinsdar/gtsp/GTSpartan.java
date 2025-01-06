@@ -34,7 +34,7 @@ public class GTSpartan extends AntimatterMod {
     public static GTSpartan INSTANCE;
     public static IProxyHandler PROXY;
     /** Mod Data **/
-    public static final String ID = "gtsp";
+    public static final String ID = "gtspartan";
     public static Logger LOGGER = LogManager.getLogger(ID);
 
     public GTSpartan() {

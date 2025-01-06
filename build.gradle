@@ -66,15 +66,15 @@ processResources {
 }
 
 mixin {
-    add sourceSets.main, "gtsp.refmap.json"
-    config("gtsp.mixins.json")
+    add sourceSets.main, "gtspartan.refmap.json"
+    config("gtspartan.mixins.json")
 }
 
 jar {
     zip64 true
     manifest {
         attributes([
-                "MixinConfigs": "gtsp.mixins.json",
+                "MixinConfigs": "gtspartan.mixins.json",
                 "Specification-Title": project.name,
                 "Specification-Vendor": "GT Spartan",
                 "Specification-Version": project.version,

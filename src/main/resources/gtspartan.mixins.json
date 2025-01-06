@@ -2,7 +2,7 @@
   "required": true,
   "package": "trinsdar.gtsp.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "gtsp.refmap.json",
+  "refmap": "gtspartan.refmap.json",
   "mixins": [
     "OilCoatingColoursMixin",
     "WeaponArchetypeAccessor",

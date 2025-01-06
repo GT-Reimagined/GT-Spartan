@@ -4,32 +4,32 @@ loaderVersion="[40,)"
 issueTrackerURL="https://github.com/GT-Reimagined/GT-Spartan/issues"
 
 [[mods]]
-modId="gtsp"
+modId="gtspartan"
 version="${version}"
 displayName="GT Spartan"
 displayURL="https://github.com/GT-Reimagined/GT-Spartan"
 credits="GregoriusTechneticies for his previous versions of GregTech. And the current GregTech community and Bear989 for suggestions and ideas."
 authors="Trinsdar"
 description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan weapons'''
-[[dependencies.gtsp]]
+[[dependencies.gtspartan]]
     modId="forge"
     mandatory=true
     versionRange="[40.1.0,)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.gtsp]]
+[[dependencies.gtspartan]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.18.2,)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.gtsp]]
+[[dependencies.gtspartan]]
     modId="antimatter"
     mandatory=true
     versionRange="[0.2,)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.gtsp]]
+[[dependencies.gtspartan]]
     modId="spartanweaponry"
     mandatory=true
     versionRange="[3.0.5,)"
