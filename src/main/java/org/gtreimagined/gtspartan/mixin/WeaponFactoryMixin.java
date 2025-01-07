@@ -10,6 +10,7 @@ import muramasa.antimatter.material.Material;
 import muramasa.antimatter.tool.AntimatterItemTier;
 import muramasa.antimatter.tool.AntimatterToolType;
 import net.minecraft.world.item.Item.Properties;
+import org.gtreimagined.gtspartan.GTSpartan;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,6 +35,6 @@ public class WeaponFactoryMixin {
 
     @Unique
     private static AntimatterToolType gtsp_$getToolType(WeaponArchetype archetype){
-        return AntimatterAPI.get(AntimatterToolType.class, ((WeaponArchetypeAccessor)archetype).getTraitsTag().location().getPath());
+        return AntimatterAPI.get(AntimatterToolType.class, ((WeaponArchetypeAccessor)archetype).getTraitsTag().location().getPath(), GTSpartan.ID);
     }
 }

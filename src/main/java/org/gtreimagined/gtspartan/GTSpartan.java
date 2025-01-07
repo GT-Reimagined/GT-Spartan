@@ -1,7 +1,9 @@
 package org.gtreimagined.gtspartan;
 
 import muramasa.antimatter.AntimatterMod;
+import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
+import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
 import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
 import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
 import muramasa.antimatter.material.Material;
@@ -47,6 +49,7 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProviders);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCraftingLoaders);
         MinecraftForge.EVENT_BUS.register(this);
+        AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
         new SpartanRegistrar();
         GTSPConfig.createConfig();
     }
