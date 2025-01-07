@@ -30,7 +30,7 @@ public class GTSPToolType extends AntimatterToolType {
             }
             return new MaterialSwordSpartan(domain2, toolType, tier, properties, archetype, weaponDamageMultiplier);
         });
-        String tagString = id.equals("quarterstaff") ? "quarterstaves" : id.endsWith("s") ? id : id + "s";
+        String tagString = id.equals("quarterstaff") ? "quarterstaves" : id.endsWith("knife") ? id.replace("knife", "knives") : id.endsWith("s") ? id : id + "s";
         this.tag = TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, tagString));
         this.addEffectiveBlocks(Blocks.COBWEB).setType(AntimatterDefaultTools.SWORD);
         if (id.equals("battleaxe")) addTags("axe");
