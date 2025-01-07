@@ -9,6 +9,7 @@ import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
 import org.gtreimagined.gtspartan.items.MaterialSwordSpartan;
+import org.gtreimagined.gtspartan.items.MaterialThrowingWeapon;
 
 public class GTSPToolType extends AntimatterToolType {
 
@@ -22,6 +23,11 @@ public class GTSPToolType extends AntimatterToolType {
         }
         this.setToolSupplier((domain2, toolType, tier, properties) -> {
             if (tier.getPrimary() == AntimatterMaterials.NetherizedDiamond) properties.fireResistant();
+            if (archetype == WeaponArchetype.THROWING_KNIFE || archetype == WeaponArchetype.TOMAHAWK || archetype == WeaponArchetype.JAVELIN || archetype == WeaponArchetype.BOOMERANG){
+                int maxAmmo = archetype == WeaponArchetype.THROWING_KNIFE ? 16 : archetype == WeaponArchetype.TOMAHAWK ? 8 : archetype == WeaponArchetype.JAVELIN ? 4 : 1;
+                int chargeTicks = archetype == WeaponArchetype.TOMAHAWK ? 8 : archetype == WeaponArchetype.JAVELIN ? 10 : 5;
+                return new MaterialThrowingWeapon(domain2, toolType, tier, properties, archetype, weaponDamageMultiplier, maxAmmo, chargeTicks);
+            }
             return new MaterialSwordSpartan(domain2, toolType, tier, properties, archetype, weaponDamageMultiplier);
         });
         String tagString = id.equals("quarterstaff") ? "quarterstaves" : id.endsWith("s") ? id : id + "s";

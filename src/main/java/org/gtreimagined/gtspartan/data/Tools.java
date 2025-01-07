@@ -30,6 +30,7 @@ public class Tools {
     public static AntimatterToolType SABER = register(new GTSPToolType(GTSpartan.ID, "saber", 3.5f, 0.5f, -1.6f, WeaponArchetype.SABER));
     public static AntimatterToolType RAPIER = register(new GTSPToolType(GTSpartan.ID, "rapier", 2.0f, 0.5f, -1.5f, WeaponArchetype.RAPIER));
     public static AntimatterToolType GREATSWORD = register(new GTSPToolType(GTSpartan.ID, "greatsword", 4.0f, 1.5f, -2.6f, WeaponArchetype.GREATSWORD));
+
     public static AntimatterToolType BATTLE_HAMMER = register(new GTSPToolType(GTSpartan.ID, "battle_hammer", 5.0f, 2.0f, -3.2f, WeaponArchetype.BATTLE_HAMMER));
     public static AntimatterToolType WARHAMMER = register(new GTSPToolType(GTSpartan.ID, "warhammer", 4.0f, 1.5f, -2.9f, WeaponArchetype.WARHAMMER));
     public static AntimatterToolType SPEAR = register(new GTSPToolType(GTSpartan.ID, "spear", 5.5f, 0.5f, -2.6f, WeaponArchetype.SPEAR));
@@ -39,11 +40,11 @@ public class Tools {
     //TODO:
     /**  Longbow
      *   Heavy Crossbow
-     *   Throwing Knife
-     *   Tomahawk
-     *   Javelin
-     *   Boomerang
      * */
+    public static AntimatterToolType THROWING_KNIFE = register(new GTSPToolType(GTSpartan.ID, "throwing_knife", 1.5f, 1.0f, -1.5f, WeaponArchetype.THROWING_KNIFE));
+    public static AntimatterToolType TOMAHAWK = register(new GTSPToolType(GTSpartan.ID, "tomahawk", 2.0f, 1.5f, -3.1f, WeaponArchetype.TOMAHAWK));
+    public static AntimatterToolType JAVELIN = register(new GTSPToolType(GTSpartan.ID, "javelin", 1.5f, 1.0f, -2.8f, WeaponArchetype.JAVELIN));
+    public static AntimatterToolType BOOMERANG = register(new GTSPToolType(GTSpartan.ID, "boomerang", 4.0f, 1.0f, -2.0f, WeaponArchetype.BOOMERANG)).setHasSecondary(false);
     public static AntimatterToolType BATTLEAXE = register(new GTSPToolType(GTSpartan.ID, "battleaxe", 4.0f, 2.0f, -3f, WeaponArchetype.BATTLEAXE));
     public static AntimatterToolType FLANGED_MACE = register(new GTSPToolType(GTSpartan.ID, "flanged_mace", 3.0f, 1.5f, -2.8f, WeaponArchetype.FLANGED_MACE));
     public static AntimatterToolType GLAIVE = register(new GTSPToolType(GTSpartan.ID, "glaive", 4.0f, 1.5f, -3f, WeaponArchetype.GLAIVE));
