@@ -7,6 +7,7 @@ import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
 import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import org.gtreimagined.gtspartan.GTSPConfig;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.SCYTHE;
+import static muramasa.antimatter.data.AntimatterDefaultTools.*;
 import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
 import static muramasa.antimatter.data.AntimatterMaterials.*;
 import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
@@ -69,163 +70,199 @@ public class ToolCrafting {
                 if (t.toolTypes().contains(DAGGER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", DAGGER.getToolStack(m),
-                                of('R', handleAny, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R");
+                                of('R', handleAny, 'P', plateGem,'F', FILE.getTag()), "FP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", DAGGER.getToolStack(m),
-                                of('R', handleAny, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
+                                of('R', handleAny, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
                     }
                 }
                 if (t.toolTypes().contains(PARRYING_DAGGER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PARRYING_DAGGER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", "PR");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP", "PR");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PARRYING_DAGGER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(LONGSWORD)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LONGSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP ", " P ", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", " P ", "PRP");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LONGSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PRP");
                     }
                 }
                 if (t.toolTypes().contains(KATANA)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", KATANA.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), " FP", " P ", "R  ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", " P ", "R  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", KATANA.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " PH", "R  ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " PH", "R  ");
                     }
                 }
                 if (t.toolTypes().contains(SABER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SABER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP ", " P ", "PR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", " P ", "PR ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SABER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(RAPIER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", RAPIER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), " FP", " P ", "R  ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", " P ", "R  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", RAPIER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PPH", "RP ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PPH", "RP ");
                     }
                 }
                 if (t.toolTypes().contains(GREATSWORD)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GREATSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP ", "PPP", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", "PPP", "PRP");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GREATSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PPP", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PPP", "PRP");
                     }
                 }
                 if (t.toolTypes().contains(BATTLE_HAMMER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLE_HAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPP", "PPP", "FR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "PPP", "PPP", "FR ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLE_HAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PPP", "FRH");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PPP", "FRH");
                     }
                 }
                 if (t.toolTypes().contains(WARHAMMER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", WARHAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", "PP", " R");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP", "PP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", WARHAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", " R ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(SPEAR)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SPEAR.getToolStack(m),
-                                of('R', poleAny, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R");
+                                of('R', poleAny, 'P', plateGem,'F', FILE.getTag()), "FP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SPEAR.getToolStack(m),
-                                of('R', poleAny, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
+                                of('R', poleAny, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
                     }
                 }
                 if (t.toolTypes().contains(HALBERD)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", HALBERD.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", "PP", "PR");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", "PP", "PR");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", HALBERD.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", "PR ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(PIKE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PIKE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " R", " R");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", " R", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PIKE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " R ", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " R ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(LANCE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LANCE.getToolStack(m),
-                                of('p', pole, 'R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), " FP", "Pp ", "RP ");
+                                of('p', pole, 'R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", "Pp ", "RP ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LANCE.getToolStack(m),
-                                of('p', pole, 'R', handle, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PpH", "RP ");
+                                of('p', pole, 'R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PpH", "RP ");
+                    }
+                }
+                if (t.toolTypes().contains(THROWING_KNIFE)){
+                    if (m.has(GEM)){
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", THROWING_KNIFE.getToolStack(m),
+                                of('P', plateGem, 'R', handle, 'F', FILE.getTag()), "RP", " F");
+                    } else {
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", THROWING_KNIFE.getToolStack(m),
+                                of('P', plateGem, 'R', handle, 'F', FILE.getTag(), 'H', HAMMER.getTag()), "RP", "HF");
+                    }
+                }
+                if (t.toolTypes().contains(TOMAHAWK)){
+                    if (m.has(GEM)){
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", TOMAHAWK.getToolStack(m),
+                                of('P', plateGem, 'R', handle, 'F', FILE.getTag()), "RP", "FP");
+                    } else {
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", TOMAHAWK.getToolStack(m),
+                                of('P', plateGem, 'R', handle, 'F', FILE.getTag(), 'H', HAMMER.getTag()), "RPH", "FP ");
+                    }
+                }
+                if (t.toolTypes().contains(JAVELIN)){
+                    if (m.has(GEM)){
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", JAVELIN.getToolStack(m),
+                                of('P', plateGem, 'R', pole, 'F', FILE.getTag()), "RP", " F");
+                    } else {
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", JAVELIN.getToolStack(m),
+                                of('P', plateGem, 'R', pole, 'F', FILE.getTag(), 'H', HAMMER.getTag()), "RP", "HF");
+                    }
+                }
+                if (t.toolTypes().contains(BOOMERANG)){
+                    if (m.has(GEM)){
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BOOMERANG.getToolStack(m),
+                                of('W', ItemTags.PLANKS, 'P', plateGem, 'F', FILE.getTag()), "PWW", "WF ", "W  ");
+                    } else {
+                        provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BOOMERANG.getToolStack(m),
+                                of('W', ItemTags.PLANKS, 'P', plateGem, 'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PWW", "WF ", "WH ");
                     }
                 }
                 if (t.toolTypes().contains(BATTLEAXE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLEAXE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPP", "PRP", "Fh ");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag()), "PPP", "PRP", "Fh ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLEAXE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PRP", "FhH");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PRP", "FhH");
                     }
                 }
                 if (t.toolTypes().contains(FLANGED_MACE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", FLANGED_MACE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FPP", " RP", "h  ");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag()), "FPP", " RP", "h  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", FLANGED_MACE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPP", " RP", "h H");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPP", " RP", "h H");
                     }
                 }
                 if (t.toolTypes().contains(GLAIVE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GLAIVE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "FP", " P", " R");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", " P", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GLAIVE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(QUARTERSTAFF)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", QUARTERSTAFF.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), " FP", " R ", "P  ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag()), " FP", " R ", "P  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", QUARTERSTAFF.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " R ", "PH ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " R ", "PH ");
                     }
                 }
                 if (t.toolTypes().contains(SCYTHE)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SCYTHE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag()), "PPF", "  P", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag()), "PPF", "  P", " R ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SCYTHE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', AntimatterDefaultTools.FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPF", " HP", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPF", " HP", " R ");
                     }
                 }
             }
