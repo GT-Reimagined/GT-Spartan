@@ -1,5 +1,5 @@
 plugins {
-    id "net.neoforged.moddev.legacyforge" version "2.0.72"
+    id "net.neoforged.moddev.legacyforge" version "2.0.78"
     id "java"
 }
 
@@ -46,7 +46,7 @@ dependencies {
     modRuntimeOnly("curse.maven:top-245211:${top_file}")
     //runtimeOnly fg.deobf("curse.maven:mmmm-225738:${mmmm_file}")
 
-    modImplementation("org.gt-reimagined:antimatter-forge:${antimatter_version}")
+    modImplementation("org.gt-reimagined:gt-lib:${gtlib_version}")
     modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}")
     modRuntimeOnly("org.gt-reimagined:gtcore-forge:${rootProject.gt_core_version}-${rootProject.minecraft_version}")
 

@@ -4,12 +4,12 @@ import muramasa.antimatter.AntimatterMod;
 import muramasa.antimatter.datagen.AntimatterDynamics;
 import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
 import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.event.forge.AntimatterCraftingEvent;
-import muramasa.antimatter.event.forge.AntimatterProvidersEvent;
+import muramasa.antimatter.event.AntimatterCraftingEvent;
+import muramasa.antimatter.event.AntimatterProvidersEvent;
 import muramasa.antimatter.material.Material;
 import muramasa.antimatter.proxy.IProxyHandler;
 import muramasa.antimatter.registration.RegistrationEvent;
-import muramasa.antimatter.registration.Side;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -61,13 +61,13 @@ public class GTSpartan extends AntimatterMod {
     }
 
     private void onProviders(AntimatterProvidersEvent ev){
-        ev.addProvider(ID, () -> new GTSPWeaponTraitTagProvider(ID, NAME + " Weapon Trait Tags"));
+        ev.addProvider(() -> new GTSPWeaponTraitTagProvider(ID, NAME + " Weapon Trait Tags"));
         final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
-        ev.addProvider(ID, () -> {
+        ev.addProvider(() -> {
             p[0] = new AntimatterBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
         });
-        ev.addProvider(ID, () -> new GTSPItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
+        ev.addProvider(() -> new GTSPItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
     }
 
     private void clientSetup(final FMLClientSetupEvent e) {
@@ -84,7 +84,7 @@ public class GTSpartan extends AntimatterMod {
     }
 
     @Override
-    public void onRegistrationEvent(RegistrationEvent event, Side side) {
+    public void onRegistrationEvent(RegistrationEvent event, Dist side) {
         if (event == RegistrationEvent.DATA_INIT) {
             Tools.init();
         }
