@@ -2,14 +2,14 @@ package org.gtreimagined.gtspartan.loader.crafting;
 
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.init.ModItems;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.datagen.providers.AntimatterRecipeProvider;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.datagen.providers.GTRecipeProvider;
+import org.gtreimagined.gtlib.util.TagUtils;
 import org.gtreimagined.gtspartan.GTSPConfig;
 import org.gtreimagined.gtspartan.GTSpartan;
 
@@ -18,11 +18,10 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import static com.google.common.collect.ImmutableMap.of;
-import static muramasa.antimatter.data.AntimatterDefaultTools.*;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.*;
-import static muramasa.antimatter.data.AntimatterMaterials.*;
-import static muramasa.antimatter.data.AntimatterMaterials.Diamond;
-import static muramasa.antimatter.material.MaterialTags.TOOLS;
+import static org.gtreimagined.gtlib.data.GTLibMaterials.*;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.*;
+import static org.gtreimagined.gtlib.data.GTTools.*;
+import static org.gtreimagined.gtlib.material.MaterialTags.TOOLS;
 import static org.gtreimagined.gtspartan.data.MaterialTypes.HANDLE;
 import static org.gtreimagined.gtspartan.data.MaterialTypes.POLE;
 import static org.gtreimagined.gtspartan.data.Tools.*;
@@ -30,7 +29,7 @@ import static org.gtreimagined.gtspartan.data.Tools.LONGSWORD;
 
 public class ToolCrafting {
 
-    public static void removeSpartanWeaponryRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider) {
+    public static void removeSpartanWeaponryRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider) {
         if (GTSPConfig.REMOVE_MODDED_WEAPONS.get()){
             List<String> materials = new ArrayList<>();
             for (String material : GTSPConfig.HIDDEN_MODDED_TOOL_MATERIALS.get()){
@@ -57,7 +56,7 @@ public class ToolCrafting {
         }
     }
 
-    public static void loadStandardToolRecipes(Consumer<FinishedRecipe> consumer, AntimatterRecipeProvider provider){
+    public static void loadStandardToolRecipes(Consumer<FinishedRecipe> consumer, GTRecipeProvider provider){
         TOOLS.getAll().forEach((m, t) -> {
             TagKey<Item> handleAny = t.handleMaterial() != Wood && t.handleMaterial().has(HANDLE) ? HANDLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "handles"));
             TagKey<Item> poleAny = t.handleMaterial() != Wood && t.handleMaterial().has(POLE) ? POLE.getMaterialTag(t.handleMaterial()) : TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "poles"));
@@ -73,7 +72,7 @@ public class ToolCrafting {
                                 of('R', handleAny, 'P', plateGem,'F', FILE.getTag()), "FP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", DAGGER.getToolStack(m),
-                                of('R', handleAny, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
+                                of('R', handleAny, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FP", "HR");
                     }
                 }
                 if (t.toolTypes().contains(PARRYING_DAGGER)){
@@ -82,7 +81,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP", "PR");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PARRYING_DAGGER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(LONGSWORD)){
@@ -91,7 +90,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", " P ", "PRP");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LONGSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", " P ", "PRP");
                     }
                 }
                 if (t.toolTypes().contains(KATANA)){
@@ -100,7 +99,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", " P ", "R  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", KATANA.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " PH", "R  ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), " FP", " PH", "R  ");
                     }
                 }
                 if (t.toolTypes().contains(SABER)){
@@ -109,7 +108,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", " P ", "PR ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SABER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", "PR ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", " P ", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(RAPIER)){
@@ -118,7 +117,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", " P ", "R  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", RAPIER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PPH", "RP ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), " FP", "PPH", "RP ");
                     }
                 }
                 if (t.toolTypes().contains(GREATSWORD)){
@@ -127,7 +126,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP ", "PPP", "PRP");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GREATSWORD.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PPP", "PRP");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PPP", "PRP");
                     }
                 }
                 if (t.toolTypes().contains(BATTLE_HAMMER)){
@@ -136,7 +135,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "PPP", "PPP", "FR ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLE_HAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PPP", "FRH");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "PPP", "PPP", "FRH");
                     }
                 }
                 if (t.toolTypes().contains(WARHAMMER)){
@@ -145,7 +144,7 @@ public class ToolCrafting {
                                 of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP", "PP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", WARHAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", " R ");
+                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PP ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(SPEAR)){
@@ -154,7 +153,7 @@ public class ToolCrafting {
                                 of('R', poleAny, 'P', plateGem,'F', FILE.getTag()), "FP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SPEAR.getToolStack(m),
-                                of('R', poleAny, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FP", "HR");
+                                of('R', poleAny, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FP", "HR");
                     }
                 }
                 if (t.toolTypes().contains(HALBERD)){
@@ -163,7 +162,7 @@ public class ToolCrafting {
                                 of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", "PP", "PR");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", HALBERD.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", "PP ", "PR ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PP ", "PR ");
                     }
                 }
                 if (t.toolTypes().contains(PIKE)){
@@ -172,7 +171,7 @@ public class ToolCrafting {
                                 of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", " R", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", PIKE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " R ", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", " R ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(LANCE)){
@@ -181,7 +180,7 @@ public class ToolCrafting {
                                 of('p', pole, 'R', handle, 'P', plateGem,'F', FILE.getTag()), " FP", "Pp ", "RP ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", LANCE.getToolStack(m),
-                                of('p', pole, 'R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", "PpH", "RP ");
+                                of('p', pole, 'R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), " FP", "PpH", "RP ");
                     }
                 }
                 if (t.toolTypes().contains(THROWING_KNIFE)){
@@ -217,7 +216,7 @@ public class ToolCrafting {
                                 of('W', ItemTags.PLANKS, 'P', plateGem, 'F', FILE.getTag()), "PWW", "WF ", "W  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BOOMERANG.getToolStack(m),
-                                of('W', ItemTags.PLANKS, 'P', plateGem, 'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PWW", "WF ", "WH ");
+                                of('W', ItemTags.PLANKS, 'P', plateGem, 'F', FILE.getTag(), 'H', HAMMER.getTag()), "PWW", "WF ", "WH ");
                     }
                 }
                 if (t.toolTypes().contains(BATTLEAXE)){
@@ -226,7 +225,7 @@ public class ToolCrafting {
                                 of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag()), "PPP", "PRP", "Fh ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLEAXE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPP", "PRP", "FhH");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "PPP", "PRP", "FhH");
                     }
                 }
                 if (t.toolTypes().contains(FLANGED_MACE)){
@@ -235,7 +234,7 @@ public class ToolCrafting {
                                 of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag()), "FPP", " RP", "h  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", FLANGED_MACE.getToolStack(m),
-                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPP", " RP", "h H");
+                                of('h', handle, 'R', rod, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPP", " RP", "h H");
                     }
                 }
                 if (t.toolTypes().contains(GLAIVE)){
@@ -244,7 +243,7 @@ public class ToolCrafting {
                                 of('R', pole, 'P', plateGem,'F', FILE.getTag()), "FP", " P", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", GLAIVE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "FPH", " P ", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", " P ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(QUARTERSTAFF)){
@@ -253,7 +252,7 @@ public class ToolCrafting {
                                 of('R', pole, 'P', plateGem,'F', FILE.getTag()), " FP", " R ", "P  ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", QUARTERSTAFF.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), " FP", " R ", "PH ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), " FP", " R ", "PH ");
                     }
                 }
                 if (t.toolTypes().contains(SCYTHE)){
@@ -262,7 +261,7 @@ public class ToolCrafting {
                                 of('R', pole, 'P', plateGem,'F', FILE.getTag()), "PPF", "  P", " R ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", SCYTHE.getToolStack(m),
-                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', AntimatterDefaultTools.HAMMER.getTag()), "PPF", " HP", " R ");
+                                of('R', pole, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "PPF", " HP", " R ");
                     }
                 }
             }

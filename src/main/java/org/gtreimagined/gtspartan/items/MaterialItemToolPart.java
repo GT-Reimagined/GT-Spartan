@@ -1,12 +1,13 @@
 package org.gtreimagined.gtspartan.items;
 
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.material.MaterialItem;
-import muramasa.antimatter.material.MaterialType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.material.MaterialItem;
+import org.gtreimagined.gtlib.material.MaterialType;
 
 import static org.gtreimagined.gtspartan.data.MaterialTypes.POLE;
 
@@ -25,7 +26,7 @@ public class MaterialItemToolPart extends MaterialItem implements IMaterialItemS
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         var builder = prov.getAntimatterBuilder(item);
         builder.parent(new ResourceLocation(getParent()));
         for (int i = 0; i < getTextures().length; i++) {

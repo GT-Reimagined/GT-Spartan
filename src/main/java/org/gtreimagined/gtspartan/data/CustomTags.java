@@ -1,8 +1,8 @@
 package org.gtreimagined.gtspartan.data;
 
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import org.gtreimagined.gtlib.util.TagUtils;
 
 
 public class CustomTags {

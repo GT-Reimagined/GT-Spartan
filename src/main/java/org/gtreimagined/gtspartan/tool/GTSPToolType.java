@@ -2,16 +2,16 @@ package org.gtreimagined.gtspartan.tool;
 
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
-import muramasa.antimatter.data.AntimatterDefaultTools;
-import muramasa.antimatter.data.AntimatterMaterials;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.util.TagUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
+import org.gtreimagined.gtlib.data.GTTools;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.util.TagUtils;
 import org.gtreimagined.gtspartan.items.MaterialSwordSpartan;
 import org.gtreimagined.gtspartan.items.MaterialThrowingWeapon;
 
-public class GTSPToolType extends AntimatterToolType {
+public class GTSPToolType extends GTToolType {
 
     private final WeaponArchetype archetype;
 
@@ -22,7 +22,7 @@ public class GTSPToolType extends AntimatterToolType {
             this.setOverlayLayers(2);
         }
         this.setToolSupplier((domain2, toolType, tier, properties) -> {
-            if (tier.getPrimary() == AntimatterMaterials.NetherizedDiamond) properties.fireResistant();
+            if (tier.getPrimary() == GTLibMaterials.NetherizedDiamond) properties.fireResistant();
             if (archetype == WeaponArchetype.THROWING_KNIFE || archetype == WeaponArchetype.TOMAHAWK || archetype == WeaponArchetype.JAVELIN || archetype == WeaponArchetype.BOOMERANG){
                 int maxAmmo = archetype == WeaponArchetype.THROWING_KNIFE ? 16 : archetype == WeaponArchetype.TOMAHAWK ? 8 : archetype == WeaponArchetype.JAVELIN ? 4 : 1;
                 int chargeTicks = archetype == WeaponArchetype.TOMAHAWK ? 8 : archetype == WeaponArchetype.JAVELIN ? 10 : 5;
@@ -32,7 +32,7 @@ public class GTSPToolType extends AntimatterToolType {
         });
         String tagString = id.equals("quarterstaff") ? "quarterstaves" : id.endsWith("knife") ? id.replace("knife", "knives") : id.endsWith("s") ? id : id + "s";
         this.tag = TagUtils.getItemTag(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, tagString));
-        this.addEffectiveBlocks(Blocks.COBWEB).setType(AntimatterDefaultTools.SWORD);
+        this.addEffectiveBlocks(Blocks.COBWEB).setType(GTTools.SWORD);
         if (id.equals("battleaxe")) addTags("axe");
     }
 }

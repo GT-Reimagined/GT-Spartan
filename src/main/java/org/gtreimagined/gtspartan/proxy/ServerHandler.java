@@ -1,9 +1,9 @@
 package org.gtreimagined.gtspartan.proxy;
 
-import muramasa.antimatter.proxy.IProxyHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.common.Mod;
+import org.gtreimagined.gtlib.proxy.IProxyHandler;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class ServerHandler implements IProxyHandler {

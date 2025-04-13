@@ -1,12 +1,13 @@
 package org.gtreimagined.gtspartan;
 
 import com.oblivioussp.spartanweaponry.api.SpartanWeaponryAPI;
-import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.registration.RegistrationEvent;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.common.Mod;
+import org.gtreimagined.gtlib.GTMod;
+import org.gtreimagined.gtlib.registration.RegistrationEvent;
 import org.gtreimagined.gtspartan.data.MaterialTypes;
 
-public class SpartanRegistrar extends AntimatterMod {
+public class SpartanRegistrar extends GTMod {
     @Override
     public void onRegistrationEvent(RegistrationEvent event, Dist side) {
         if (event == RegistrationEvent.DATA_INIT) {

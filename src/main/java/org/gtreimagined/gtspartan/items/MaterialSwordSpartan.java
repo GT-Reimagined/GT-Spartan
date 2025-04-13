@@ -5,14 +5,6 @@ import com.oblivioussp.spartanweaponry.api.tags.ModWeaponTraitTags;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
-import muramasa.antimatter.AntimatterAPI;
-import muramasa.antimatter.data.AntimatterMaterials;
-import muramasa.antimatter.datagen.builder.AntimatterItemModelBuilder;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.tool.AntimatterItemTier;
-import muramasa.antimatter.tool.AntimatterToolType;
-import muramasa.antimatter.tool.IAntimatterTool;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +20,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.Tags.Items;
+import org.gtreimagined.gtlib.GTAPI;
+import org.gtreimagined.gtlib.data.GTLibMaterials;
+import org.gtreimagined.gtlib.datagen.builder.GTItemModelBuilder;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.tool.GTItemTier;
+import org.gtreimagined.gtlib.tool.GTToolType;
+import org.gtreimagined.gtlib.tool.IGTTool;
 import org.jetbrains.annotations.Nullable;
 import tesseract.api.context.TesseractItemContext;
 import tesseract.api.gt.IEnergyHandlerItem;
@@ -36,28 +36,29 @@ import org.gtreimagined.gtspartan.GTSpartan;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static muramasa.antimatter.data.AntimatterMaterialTypes.GEM;
-import static muramasa.antimatter.data.AntimatterMaterialTypes.INGOT;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.GEM;
+import static org.gtreimagined.gtlib.data.GTMaterialTypes.INGOT;
 
-public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTool {
+
+public class MaterialSwordSpartan extends SwordBaseItem implements IGTTool {
     private final String domain;
     @org.jetbrains.annotations.NotNull
-    private final AntimatterToolType type;
-    private final AntimatterItemTier tier;
+    private final GTToolType type;
+    private final GTItemTier tier;
     private final boolean replacement;
 
-    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float weaponDamageMultiplier) {
+    public MaterialSwordSpartan(String domain, GTToolType type, GTItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float weaponDamageMultiplier) {
         this(domain, type, tier, properties, archetypeIn, type.getBaseAttackDamage(), weaponDamageMultiplier, type.getBaseAttackSpeed() + 4, false, "item.spartanweaponry.custom_" + type.getId());
     }
 
-    public MaterialSwordSpartan(String domain, AntimatterToolType type, AntimatterItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed, boolean replacement, String customDisplayName) {
+    public MaterialSwordSpartan(String domain, GTToolType type, GTItemTier tier, Item.Properties properties, WeaponArchetype archetypeIn, float baseAttackDamage, float weaponDamageMultiplier, float baseAttackSpeed, boolean replacement, String customDisplayName) {
         super(properties, new WeaponMaterialWrapper(String.join("_", tier.getPrimary().getId(), type.getId()), domain, tier, repairTag(tier.getPrimary()), materialTag(tier.getPrimary())), archetypeIn, baseAttackDamage, weaponDamageMultiplier, baseAttackSpeed, customDisplayName);
         this.domain = domain;
         this.type = type;
         this.tier = tier;
         this.replacement = replacement;
         if (!replacement) {
-            AntimatterAPI.register(IAntimatterTool.class, this);
+            GTAPI.register(IGTTool.class, this);
         }
     }
 
@@ -67,7 +68,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     }
 
     public static TagKey<WeaponTrait> materialTag(Material material) {
-        if (material == AntimatterMaterials.NetherizedDiamond) material = AntimatterMaterials.Netherite;
+        if (material == GTLibMaterials.NetherizedDiamond) material = GTLibMaterials.Netherite;
         return ModWeaponTraitTags.create("materials/" + material.getId());
     }
 
@@ -76,7 +77,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     }
 
     @Override
-    public AntimatterItemTier getAntimatterItemTier() {
+    public GTItemTier getGTItemTier() {
         return tier;
     }
 
@@ -91,7 +92,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     }
 
     @Override
-    public AntimatterToolType getAntimatterToolType() {
+    public GTToolType getGTToolType() {
         return type;
     }
 
@@ -123,7 +124,7 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return (int) (super.getMaxDamage(stack) * getAntimatterToolType().getDurabilityMultiplier());
+        return (int) (super.getMaxDamage(stack) * getGTToolType().getDurabilityMultiplier());
     }
 
     @Override
@@ -139,10 +140,10 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     }
 
     @Override
-    public void onItemModelBuild(ItemLike item, AntimatterItemModelProvider prov) {
+    public void onItemModelBuild(ItemLike item, GTItemModelProvider prov) {
         String[] builders = {"", "_throwing", "_blocking"};
         for (String builderString : builders) {
-            AntimatterItemModelBuilder builder = prov.getBuilder(this.getId() + builderString);
+            GTItemModelBuilder builder = prov.getBuilder(this.getId() + builderString);
             builder.parent(new ResourceLocation(SpartanWeaponryAPI.MOD_ID, "item/base/" + type.getId() + builderString));
             var textures = getTextures();
             for (int i = 0; i < textures.length; i++) {
@@ -165,6 +166,6 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IAntimatterTo
     @Override
     public int getItemColor(ItemStack stack, @Nullable Block block, int i) {
         if (replacement) return -1;
-        return IAntimatterTool.super.getItemColor(stack, block, i);
+        return IGTTool.super.getItemColor(stack, block, i);
     }
 }

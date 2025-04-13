@@ -1,10 +1,10 @@
 package org.gtreimagined.gtspartan.proxy;
 
-import muramasa.antimatter.proxy.IProxyHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.gtreimagined.gtlib.proxy.IProxyHandler;
 
 public class ClientHandler implements IProxyHandler {
 

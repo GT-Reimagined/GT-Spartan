@@ -3,11 +3,11 @@ package org.gtreimagined.gtspartan.datagen;
 import com.oblivioussp.spartanweaponry.api.WeaponTraits;
 import com.oblivioussp.spartanweaponry.api.tags.ModWeaponTraitTags;
 import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
-import muramasa.antimatter.datagen.providers.AntimatterTagProvider;
-import muramasa.antimatter.material.MaterialTags;
 import net.minecraft.core.Registry;
+import org.gtreimagined.gtlib.datagen.providers.GTTagProvider;
+import org.gtreimagined.gtlib.material.MaterialTags;
 
-public class GTSPWeaponTraitTagProvider extends AntimatterTagProvider<WeaponTrait> {
+public class GTSPWeaponTraitTagProvider extends GTTagProvider<WeaponTrait> {
     public GTSPWeaponTraitTagProvider(String providerDomain, String providerName) {
         super((Registry<WeaponTrait>) Registry.REGISTRY.get(WeaponTraits.REGISTRY_KEY.location()), providerDomain, providerName, "spartanweaponry/weapon_traits");
     }

@@ -1,14 +1,5 @@
 package org.gtreimagined.gtspartan;
 
-import muramasa.antimatter.AntimatterMod;
-import muramasa.antimatter.datagen.AntimatterDynamics;
-import muramasa.antimatter.datagen.providers.AntimatterBlockTagProvider;
-import muramasa.antimatter.datagen.providers.AntimatterItemModelProvider;
-import muramasa.antimatter.event.AntimatterCraftingEvent;
-import muramasa.antimatter.event.AntimatterProvidersEvent;
-import muramasa.antimatter.material.Material;
-import muramasa.antimatter.proxy.IProxyHandler;
-import muramasa.antimatter.registration.RegistrationEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
@@ -19,6 +10,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.gtreimagined.gtlib.GTMod;
+import org.gtreimagined.gtlib.datagen.GTLibDynamics;
+import org.gtreimagined.gtlib.datagen.providers.GTBlockTagProvider;
+import org.gtreimagined.gtlib.datagen.providers.GTItemModelProvider;
+import org.gtreimagined.gtlib.event.GTCraftingEvent;
+import org.gtreimagined.gtlib.event.GTProvidersEvent;
+import org.gtreimagined.gtlib.material.Material;
+import org.gtreimagined.gtlib.proxy.IProxyHandler;
+import org.gtreimagined.gtlib.registration.RegistrationEvent;
 import org.gtreimagined.gtspartan.data.Tools;
 import org.gtreimagined.gtspartan.datagen.GTSPItemTagProvider;
 import org.gtreimagined.gtspartan.datagen.GTSPWeaponTraitTagProvider;
@@ -30,7 +30,7 @@ import org.gtreimagined.gtspartan.proxy.ServerHandler;
 
 
 @Mod(GTSpartan.ID)
-public class GTSpartan extends AntimatterMod {
+public class GTSpartan extends GTMod {
 
     public static final String NAME = "GT Spartan";
     public static GTSpartan INSTANCE;
@@ -49,22 +49,22 @@ public class GTSpartan extends AntimatterMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onProviders);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCraftingLoaders);
         MinecraftForge.EVENT_BUS.register(this);
-        AntimatterDynamics.clientProvider(ID, () -> new AntimatterItemModelProvider(ID, NAME + " Item Models"));
+        GTLibDynamics.clientProvider(ID, () -> new GTItemModelProvider(ID, NAME + " Item Models"));
         new SpartanRegistrar();
         GTSPConfig.createConfig();
     }
 
-    public void registerCraftingLoaders(AntimatterCraftingEvent event){
+    public void registerCraftingLoaders(GTCraftingEvent event){
         event.addLoader(ToolCrafting::loadStandardToolRecipes);
         event.addLoader(ToolCrafting::removeSpartanWeaponryRecipes);
         event.addLoader(MaterialCrafting::loadRecipes);
     }
 
-    private void onProviders(AntimatterProvidersEvent ev){
+    private void onProviders(GTProvidersEvent ev){
         ev.addProvider(() -> new GTSPWeaponTraitTagProvider(ID, NAME + " Weapon Trait Tags"));
-        final AntimatterBlockTagProvider[] p = new AntimatterBlockTagProvider[1];
+        final GTBlockTagProvider[] p = new GTBlockTagProvider[1];
         ev.addProvider(() -> {
-            p[0] = new AntimatterBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
+            p[0] = new GTBlockTagProvider(ID, NAME.concat(" Block Tags"), false);
             return p[0];
         });
         ev.addProvider(() -> new GTSPItemTagProvider(ID, NAME.concat(" Item Tags"), false, p[0]));
