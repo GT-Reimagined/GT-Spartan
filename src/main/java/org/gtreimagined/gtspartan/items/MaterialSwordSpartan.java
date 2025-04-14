@@ -6,15 +6,19 @@ import com.oblivioussp.spartanweaponry.api.trait.WeaponTrait;
 import com.oblivioussp.spartanweaponry.item.SwordBaseItem;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -87,6 +91,11 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IGTTool {
     }
 
     @Override
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+       onGenericFillItemGroup(group, items, 0);
+    }
+
+    @Override
     public int getEnergyTier() {
         return 0;
     }
@@ -130,6 +139,12 @@ public class MaterialSwordSpartan extends SwordBaseItem implements IGTTool {
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         return onGenericBlockDestroyed(stack, level, state, pos, entity);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (type.getBlacklistedEnchantments().contains(enchantment)) return false;
+        return enchantment.category.canEnchant(stack.getItem());
     }
 
     @Override

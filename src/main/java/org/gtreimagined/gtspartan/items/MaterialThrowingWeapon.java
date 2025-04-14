@@ -11,18 +11,23 @@ import com.oblivioussp.spartanweaponry.init.ModSounds;
 import com.oblivioussp.spartanweaponry.item.ThrowingWeaponItem;
 import com.oblivioussp.spartanweaponry.util.WeaponArchetype;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -42,6 +47,7 @@ import tesseract.api.gt.IEnergyHandlerItem;
 import java.util.List;
 import java.util.function.Consumer;
 
+import static org.gtreimagined.gtlib.data.GTTools.KNIFE;
 import static org.gtreimagined.gtspartan.items.MaterialSwordSpartan.materialTag;
 import static org.gtreimagined.gtspartan.items.MaterialSwordSpartan.repairTag;
 
@@ -120,6 +126,11 @@ public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IGTToo
     }
 
     @Override
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
+        onGenericFillItemGroup(group, items, 0);
+    }
+
+    @Override
     public int getEnergyTier() {
         return 0;
     }
@@ -168,6 +179,20 @@ public class MaterialThrowingWeapon extends ThrowingWeaponItem implements IGTToo
     @Override
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity entity) {
         return onGenericBlockDestroyed(stack, level, state, pos, entity);
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (type.getBlacklistedEnchantments().contains(enchantment)) return false;
+        if (enchantment.category == EnchantmentCategory.WEAPON) {
+            return true;
+        }
+        return enchantment.category.canEnchant(stack.getItem());
     }
 
     @Override
