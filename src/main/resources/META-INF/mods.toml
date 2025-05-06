@@ -26,7 +26,7 @@ description='''Addon to AntimatterAPI and Spartan's Weaponry adding gt spartan w
 [[dependencies.gtspartan]]
     modId="gtlib"
     mandatory=true
-    versionRange="[0.3-pre.9,)"
+    versionRange="[0.3,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.gtspartan]]
