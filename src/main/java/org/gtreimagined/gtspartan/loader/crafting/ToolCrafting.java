@@ -65,6 +65,7 @@ public class ToolCrafting {
             TagKey<Item> rod = t.handleMaterial().has(ROD) ? ROD.getMaterialTag(t.handleMaterial()) : ROD.getMaterialTag(Wood);
             boolean replaceVanilla = (m != Iron && m != Gold && m != Diamond) || GTSPConfig.OVERRIDE_VANILLA_SPARTAN_RECIPES.get();
             if ((m.has(INGOT) || m.has(GEM)) && replaceVanilla){
+                TagKey<Item> ingotGem = m.has(GEM) ? GEM.getMaterialTag(m) : INGOT.getMaterialTag(m);
                 TagKey<Item> plateGem = m.has(GEM) ? GEM.getMaterialTag(m) : m.has(PLATE) ? PLATE.getMaterialTag(m) : INGOT.getMaterialTag(m);
                 if (t.toolTypes().contains(DAGGER)){
                     if (m.has(GEM)){
@@ -132,19 +133,19 @@ public class ToolCrafting {
                 if (t.toolTypes().contains(BATTLE_HAMMER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLE_HAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "PPP", "PPP", "FR ");
+                                of('R', handle, 'P', ingotGem,'F', FILE.getTag()), "PPP", "PPP", "FR ");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", BATTLE_HAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "PPP", "PPP", "FRH");
+                                of('R', handle, 'P', ingotGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "PPP", "PPP", "FRH");
                     }
                 }
                 if (t.toolTypes().contains(WARHAMMER)){
                     if (m.has(GEM)){
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", WARHAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag()), "FP", "PP", " R");
+                                of('R', handle, 'P', ingotGem,'F', FILE.getTag()), "FP", "PP", " R");
                     } else {
                         provider.addStackRecipe(consumer, GTSpartan.ID, "", "", WARHAMMER.getToolStack(m),
-                                of('R', handle, 'P', plateGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PP ", " R ");
+                                of('R', handle, 'P', ingotGem,'F', FILE.getTag(), 'H', HAMMER.getTag()), "FPH", "PP ", " R ");
                     }
                 }
                 if (t.toolTypes().contains(SPEAR)){
